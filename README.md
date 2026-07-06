@@ -1,6 +1,6 @@
-# 未来小区综合服务小程序预览
+# 未来小区综合服务小程序
 
-基于 `demo/community-steward-demo.html` 的内容，改造成 Vue + Vite + Vant 的移动端小程序外观预览。
+基于既有后台管理内容，改造成 Vue + Vite + Vant 的移动端小程序界面。
 
 ## 本地运行
 

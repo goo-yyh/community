@@ -83,7 +83,7 @@ import {
   setToastDefaultOptions,
 } from 'vant';
 import { useRoute, useRouter } from 'vue-router';
-import { routeItems } from './data/community';
+import { routeItems, serviceRolePages } from './data/community';
 
 const route = useRoute();
 const router = useRouter();
@@ -100,7 +100,14 @@ const themeVars = {
   radiusMd: '8px',
 };
 
-const currentTitle = computed(() => route.meta.title ?? '小区管家');
+const currentTitle = computed(() => {
+  const role = serviceRolePages[route.params.role];
+  if (role) {
+    return `${role.title}服务`;
+  }
+
+  return route.meta.title ?? '小区管家';
+});
 
 onMounted(() => {
   portalReady.value = true;

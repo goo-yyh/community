@@ -1,16 +1,16 @@
 export const routeItems = [
   { path: '/overview', title: '项目总览', short: '总览', icon: 'wap-home-o' },
-  { path: '/stakeholders', title: '五类主体闭环', short: '主体', icon: 'cluster-o' },
+  { path: '/stakeholders', title: '服务入口', short: '入口', icon: 'cluster-o' },
   { path: '/workbench', title: '管家工作台', short: '工单', icon: 'todo-list-o' },
   { path: '/gov-screen', title: '政府数据大屏', short: '大屏', icon: 'bar-chart-o' },
   { path: '/elder-device', title: '4G智能主机呼叫', short: '设备', icon: 'phone-circle-o' },
   { path: '/care-points', title: '关怀积分与保障', short: '积分', icon: 'gift-o' },
   { path: '/ai-governance', title: 'AI 与治理闭环', short: 'AI', icon: 'guide-o' },
-  { path: '/pilot', title: '试点指标', short: '验收', icon: 'medal-o' },
+  { path: '/pilot', title: '运营指标', short: '指标', icon: 'medal-o' },
 ];
 
 export const overviewMetrics = [
-  { value: '5', label: '试点小区' },
+  { value: '5', label: '接入小区' },
   { value: '500', label: '老人建档' },
   { value: '200', label: '月互助服务单' },
   { value: '3000', label: '月民生服务记录' },
@@ -58,6 +58,129 @@ export const stakeholderCards = [
     summary: '承接维修、保洁、安装、适老化改造。',
   },
 ];
+
+export const serviceRolePages = {
+  owner: {
+    title: '普通业主',
+    subtitle: '报修、预约服务，家属也可以代老人提交需求。',
+    color: '#0f6bdc',
+    bg: '#e8f2ff',
+    icon: 'home-o',
+    formTitle: '提交服务需求',
+    submitText: '提交给小区管家',
+    actions: [
+      { key: 'repair', title: '我要报修', desc: '水电、门窗、厨卫、公共设施', icon: 'setting-o' },
+      { key: 'reserve', title: '预约上门服务', desc: '保洁、安装、助洁、理发', icon: 'calendar-o' },
+      { key: 'family', title: '代老人下单', desc: '助餐、买药、陪诊、代办', icon: 'friends-o' },
+    ],
+    formDefaults: {
+      type: '厨房漏水报修',
+      address: '8 栋 1101',
+      phone: '13800008888',
+      detail: '厨房水槽下方漏水，需要尽快安排水电师傅上门。',
+    },
+    tasks: [
+      { id: 'o1', title: '厨房漏水报修', desc: '已匹配张师傅，预计 18 分钟到达。', status: '处理中' },
+      { id: 'o2', title: '周六助洁预约', desc: '管家已确认服务时段，待服务人员接单。', status: '待接单' },
+    ],
+  },
+  elder: {
+    title: '老年人',
+    subtitle: '不会操作手机也可以由管家、家属或设备发起服务。',
+    color: '#d33f49',
+    bg: '#ffecee',
+    icon: 'phone-circle-o',
+    formTitle: '发起关怀服务',
+    submitText: '通知管家和家属',
+    actions: [
+      { key: 'call', title: '一键联系管家', desc: '紧急求助、设备呼叫、电话接入', icon: 'phone-circle-o' },
+      { key: 'meal', title: '申请助餐', desc: '午餐配送、低盐低糖备注', icon: 'shop-o' },
+      { key: 'medicine', title: '买药代办', desc: '常用药代买、处方药确认', icon: 'records-o' },
+    ],
+    formDefaults: {
+      type: '常用药代买',
+      address: '3 栋 602',
+      phone: '家属 13900006666',
+      detail: '王阿姨需要代买降压药，送达后请电话通知家属。',
+    },
+    tasks: [
+      { id: 'e1', title: '今日午餐配送', desc: '安心助餐点 11:40 前送达。', status: '配送中' },
+      { id: 'e2', title: '每周探访', desc: '志愿者陈阿姨今日 16:30 上门。', status: '已安排' },
+    ],
+  },
+  volunteer: {
+    title: '志愿者',
+    subtitle: '查看附近任务，接单后完成打卡并获得积分。',
+    color: '#11875d',
+    bg: '#e9f8f0',
+    icon: 'friends-o',
+    formTitle: '发布可服务时间',
+    submitText: '更新志愿排班',
+    actions: [
+      { key: 'visit', title: '接探访任务', desc: '独居老人问候、状态记录', icon: 'friends-o' },
+      { key: 'buy', title: '接代买任务', desc: '买药、生活物资、跑腿代办', icon: 'bag-o' },
+      { key: 'check', title: '服务打卡', desc: '到达、完成、异常上报', icon: 'passed' },
+    ],
+    formDefaults: {
+      type: '探访助聊',
+      address: '2 栋、3 栋附近',
+      phone: '志愿者 陈阿姨',
+      detail: '今天 16:00-18:00 可接探访和代买任务。',
+    },
+    tasks: [
+      { id: 'v1', title: '黄爷爷每周探访', desc: '2 栋 1203，记录身体和用餐状态。', status: '可接单' },
+      { id: 'v2', title: '林阿姨生活物资代买', desc: '7 栋 606，纸巾和洗衣液。', status: '可接单' },
+    ],
+  },
+  merchant: {
+    title: '便民商户',
+    subtitle: '处理助餐、药品配送和生活物资保供订单。',
+    color: '#b96f12',
+    bg: '#fff5df',
+    icon: 'shop-o',
+    formTitle: '更新可供服务',
+    submitText: '同步给小区管家',
+    actions: [
+      { key: 'meal', title: '助餐订单', desc: '套餐备餐、配送确认', icon: 'shop-o' },
+      { key: 'medicine', title: '药品配送', desc: '药店确认、家属核验', icon: 'records-o' },
+      { key: 'supply', title: '物资保供', desc: '米面油、纸巾、日用品', icon: 'gift-o' },
+    ],
+    formDefaults: {
+      type: '午餐套餐供给',
+      address: '安心助餐点',
+      phone: '商户 0574-88886666',
+      detail: '今日可提供 60 份适老套餐，支持 11:30 前分批配送。',
+    },
+    tasks: [
+      { id: 'm1', title: '独居老人午餐 28 份', desc: '按名单逐户配送并确认签收。', status: '待确认' },
+      { id: 'm2', title: '慢病药品配送 6 单', desc: '需家属确认处方信息。', status: '待处理' },
+    ],
+  },
+  worker: {
+    title: '技工',
+    subtitle: '承接维修、保洁、安装和适老化改造工单。',
+    color: '#6b5bd6',
+    bg: '#f0edff',
+    icon: 'setting-o',
+    formTitle: '更新接单能力',
+    submitText: '更新接单状态',
+    actions: [
+      { key: 'repair', title: '维修工单', desc: '水电、厨卫、门窗、家电', icon: 'setting-o' },
+      { key: 'clean', title: '保洁安装', desc: '助洁、安装、疏通', icon: 'brush-o' },
+      { key: 'aging', title: '适老化改造', desc: '扶手、防滑、照明优化', icon: 'wap-home-o' },
+    ],
+    formDefaults: {
+      type: '水电维修',
+      address: '新城市花园附近',
+      phone: '技工 张师傅',
+      detail: '今天 14:00-18:00 可接水电维修、扶手安装工单。',
+    },
+    tasks: [
+      { id: 'w1', title: '8 栋 1101 厨房漏水', desc: '业主已上传照片，预计 18 分钟到达。', status: '待接单' },
+      { id: 'w2', title: '卫生间扶手安装评估', desc: '3 栋 602，需先测量墙面。', status: '待报价' },
+    ],
+  },
+};
 
 export const scenarios = {
   owner: {

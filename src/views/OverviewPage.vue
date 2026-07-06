@@ -15,7 +15,7 @@
 
     <section class="panel">
       <div class="panel-head">
-        <strong>演示路径</strong>
+        <strong>功能入口</strong>
         <van-tag plain type="primary">8 个模块</van-tag>
       </div>
       <div class="route-grid">
@@ -29,7 +29,7 @@
     <section class="panel">
       <div class="panel-head">
         <strong>今日运行</strong>
-        <van-tag color="#11875d">实时演示数据</van-tag>
+        <van-tag color="#11875d">实时运行</van-tag>
       </div>
       <div class="notice-list">
         <router-link to="/elder-device" class="notice-item urgent">

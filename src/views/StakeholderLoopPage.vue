@@ -1,55 +1,44 @@
 <template>
   <section class="mini-page">
     <div class="page-title">
-      <span>一个中心 · 五类主体</span>
-      <h1>小区管家把分散资源组织成服务网络</h1>
+      <span>用户入口</span>
+      <h1>选择你的身份，进入对应服务</h1>
     </div>
 
-    <van-grid :border="false" :column-num="2">
-      <van-grid-item
+    <div class="role-entry-grid">
+      <router-link
         v-for="item in stakeholderCards"
         :key="item.key"
-        :text="item.name"
-        @click="selectScenario(item.key)"
+        :to="`/service/${item.key}`"
+        class="role-entry-card"
       >
-        <template #icon>
-          <span class="entry-icon" :style="{ color: item.color, background: item.bg }">
-            <van-icon :name="item.icon" />
-          </span>
-        </template>
-        <template #text>
-          <strong>{{ item.name }}</strong>
-          <small>{{ item.summary }}</small>
-        </template>
-      </van-grid-item>
-    </van-grid>
+        <span class="entry-icon" :style="{ color: item.color, background: item.bg }">
+          <van-icon :name="item.icon" />
+        </span>
+        <strong>{{ item.name }}</strong>
+        <p>{{ item.summary }}</p>
+        <em>进入办理</em>
+      </router-link>
+    </div>
 
-    <section class="panel scenario-panel">
+    <section class="panel">
       <div class="panel-head">
-        <strong>{{ activeScenario.title }}</strong>
-        <van-tag :color="activeScenario.color">{{ activeScenario.risk }}</van-tag>
+        <strong>管家协同</strong>
+        <van-tag plain type="primary">统一受理</van-tag>
       </div>
-      <p class="panel-copy">{{ activeScenario.desc }}</p>
-      <van-steps direction="vertical" :active="activeScenario.steps.length - 1">
-        <van-step v-for="step in activeScenario.steps" :key="step[0]">
-          <strong>{{ step[0] }}</strong>
-          <p>{{ step[1] }}</p>
-        </van-step>
-      </van-steps>
+      <div class="service-flow">
+        <span>提交需求</span>
+        <van-icon name="arrow" />
+        <span>管家派单</span>
+        <van-icon name="arrow" />
+        <span>服务处理</span>
+        <van-icon name="arrow" />
+        <span>评价回访</span>
+      </div>
     </section>
   </section>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { showToast } from 'vant';
-import { scenarios, stakeholderCards } from '../data/community';
-
-const scenarioKey = ref('owner');
-const activeScenario = computed(() => scenarios[scenarioKey.value]);
-
-function selectScenario(key) {
-  scenarioKey.value = key;
-  showToast(`${scenarios[key].risk}已打开`);
-}
+import { stakeholderCards } from '../data/community';
 </script>

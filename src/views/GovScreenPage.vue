@@ -1,7 +1,7 @@
 <template>
   <section class="mini-page gov-page">
     <div class="gov-hero">
-      <span>演示数据 · 今日 14:30 更新</span>
+      <span>实时数据 · 今日 14:30 更新</span>
       <strong>一屏掌握养老关怀和邻里互助态势</strong>
       <p>按小区汇总红黄绿等级老人、服务次数、志愿者力量和互助单数。</p>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <section class="mini-page">
     <div class="page-title">
-      <span>试点验收</span>
+      <span>运营指标</span>
       <h1>跑通样板小区，做到模式可复制</h1>
     </div>
 
