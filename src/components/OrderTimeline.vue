@@ -9,10 +9,10 @@
       <span class="flow-icon">
         <van-icon :name="step.icon" />
       </span>
-      <div>
+      <div class="flow-copy">
         <strong>{{ step.title }}</strong>
         <p>{{ step.desc }}</p>
-        <em>{{ step.time || step.status }}</em>
+        <em>{{ step.time || '待更新' }}</em>
       </div>
       <van-tag :color="statusColor(step.status)">{{ step.status }}</van-tag>
     </div>

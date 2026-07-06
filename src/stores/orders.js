@@ -123,6 +123,9 @@ function makeTitle(content) {
 }
 
 function inferCategory(content) {
+  if (/购买|大米|鸡蛋|牛奶|抽纸|纸巾|蔬菜|洗衣液|商品/.test(content)) {
+    return '商城商品';
+  }
   if (/药|买药|处方/.test(content)) {
     return '买药代办';
   }

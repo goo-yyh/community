@@ -2,12 +2,21 @@
   <section class="mini-page order-detail-page">
     <template v-if="order">
       <section class="panel order-detail-head">
-        <span>{{ order.id }} · {{ order.category }}</span>
+        <div class="detail-topline">
+          <span>{{ order.id }} · {{ order.category }}</span>
+          <van-tag type="primary">{{ getCurrentStep(order).title }}</van-tag>
+        </div>
         <strong>{{ order.title }}</strong>
         <p>{{ order.content }}</p>
-        <div>
-          <van-tag type="primary">{{ getCurrentStep(order).title }}</van-tag>
-          <em>{{ order.address }} · {{ order.contact }}</em>
+        <div class="detail-meta-grid">
+          <span>
+            <van-icon name="location-o" />
+            {{ order.address }}
+          </span>
+          <span>
+            <van-icon name="contact-o" />
+            {{ order.contact }}
+          </span>
         </div>
       </section>
 

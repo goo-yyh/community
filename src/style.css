@@ -760,58 +760,177 @@ a {
   font-weight: 900;
 }
 
-.mall-list,
+.mall-hero {
+  min-height: 118px;
+  padding: 16px;
+  border-radius: 8px;
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(7, 63, 134, 0.96), rgba(15, 107, 220, 0.8)),
+    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.42), transparent 32%);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 50px;
+  gap: 12px;
+  align-items: center;
+}
+
+.mall-hero span,
+.mall-hero strong {
+  display: block;
+}
+
+.mall-hero span {
+  color: #d7e9ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.mall-hero strong {
+  margin-top: 8px;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.mall-hero .van-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.18);
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+}
+
+.mall-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mall-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.mall-tabs span {
+  flex: 0 0 auto;
+  min-height: 30px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.mall-tabs .active {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.mall-grid,
 .user-order-list {
   display: grid;
   gap: 9px;
 }
 
+.mall-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .mall-card {
-  min-height: 104px;
-  padding: 12px;
+  min-width: 0;
+  min-height: 220px;
+  padding: 9px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 58px;
-  gap: 10px;
-  align-items: center;
+  grid-template-rows: 92px minmax(0, 1fr) 34px;
+  gap: 8px;
 }
 
-.mall-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: #edf6ff;
+.mall-visual {
+  position: relative;
+  min-width: 0;
+  border-radius: 8px;
+  color: var(--goods-color);
+  background:
+    radial-gradient(circle at 64% 32%, rgba(255, 255, 255, 0.95), transparent 34%),
+    linear-gradient(135deg, rgba(15, 107, 220, 0.12), rgba(17, 135, 93, 0.08));
   display: grid;
   place-items: center;
-  font-size: 25px;
+  overflow: hidden;
+}
+
+.mall-visual .van-icon {
+  font-size: 42px;
+}
+
+.mall-visual .van-tag {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: auto;
+  max-width: 88px;
+  background: rgba(255, 255, 255, 0.86);
 }
 
 .mall-card strong,
 .mall-card p,
-.mall-card em {
+.mall-price,
+.mall-price span,
+.mall-price em {
   display: block;
 }
 
 .mall-card strong {
   color: var(--ink);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.3;
 }
 
 .mall-card p {
-  margin: 5px 0 0;
+  min-height: 34px;
+  margin: 4px 0 0;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.4;
 }
 
-.mall-card em {
+.mall-price {
   margin-top: 7px;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.mall-price span {
   color: var(--blue);
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.mall-price em {
+  color: #9aa8b8;
+  font-size: 11px;
   font-style: normal;
+  text-decoration: line-through;
+}
+
+.mall-buy {
+  min-height: 34px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--blue);
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
   font-weight: 900;
 }
 
@@ -821,21 +940,54 @@ a {
 }
 
 .user-order-card {
-  padding: 11px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 82px;
-  gap: 9px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  box-shadow: 0 8px 18px rgba(20, 33, 58, 0.04);
 }
 
-.user-order-card span,
+.order-card-main {
+  min-width: 0;
+}
+
+.order-card-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.order-card-meta span,
+.order-card-meta em {
+  display: block;
+  min-width: 0;
+}
+
+.order-card-meta span {
+  font-weight: 900;
+}
+
+.order-card-meta em {
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: var(--blue);
+  background: var(--blue-soft);
+  font-style: normal;
+  font-weight: 900;
+}
+
 .user-order-card p,
 .order-status-side em,
-.order-detail-head span,
+.order-card-foot,
+.detail-topline span,
 .order-detail-head p,
-.order-detail-head em {
+.detail-meta-grid span {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.45;
@@ -843,7 +995,7 @@ a {
 
 .user-order-card strong {
   display: block;
-  margin-top: 5px;
+  margin-top: 7px;
   color: var(--ink);
   font-size: 15px;
   line-height: 1.35;
@@ -851,18 +1003,40 @@ a {
 
 .user-order-card p {
   margin: 5px 0 0;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.order-card-foot {
+  margin-top: 8px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.order-card-foot .van-icon {
+  color: var(--blue);
 }
 
 .order-status-side {
   display: grid;
-  gap: 8px;
+  gap: 7px;
   justify-items: end;
   align-content: start;
   text-align: right;
 }
 
+.order-status-side .van-tag {
+  width: max-content;
+  max-width: 84px;
+  justify-self: end;
+}
+
 .order-status-side em {
   font-style: normal;
+  white-space: nowrap;
 }
 
 .publish-panel {
@@ -951,44 +1125,66 @@ a {
 
 .order-detail-head {
   display: grid;
-  gap: 7px;
+  gap: 9px;
+}
+
+.detail-topline {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-topline .van-tag {
+  width: max-content;
+  flex: 0 0 auto;
 }
 
 .order-detail-head strong {
   color: var(--ink);
-  font-size: 18px;
-  line-height: 1.3;
+  font-size: 17px;
+  line-height: 1.35;
 }
 
 .order-detail-head p {
   margin: 0;
 }
 
-.order-detail-head div {
+.detail-meta-grid {
   display: grid;
-  gap: 7px;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.detail-meta-grid span {
+  min-height: 30px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #f4f8fc;
+  display: flex;
+  gap: 5px;
   align-items: center;
 }
 
-.order-detail-head em {
-  font-style: normal;
+.detail-meta-grid .van-icon {
+  color: var(--blue);
 }
 
 .order-flow {
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
 
 .order-flow-step {
   position: relative;
-  min-height: 74px;
-  padding: 10px;
+  min-height: 66px;
+  padding: 9px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #f8fbff;
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr) 58px;
-  gap: 9px;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  gap: 8px;
   align-items: start;
 }
 
@@ -1002,14 +1198,14 @@ a {
 }
 
 .flow-icon {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   color: var(--blue);
   background: #fff;
   display: grid;
   place-items: center;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .order-flow-step.done .flow-icon {
@@ -1031,16 +1227,23 @@ a {
 .order-flow-step p {
   margin: 3px 0 0;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.4;
 }
 
 .order-flow-step em {
-  margin-top: 5px;
+  margin-top: 4px;
   color: var(--blue);
   font-size: 11px;
   font-style: normal;
   font-weight: 900;
+}
+
+.order-flow-step .van-tag {
+  width: max-content;
+  max-width: 70px;
+  justify-self: end;
+  padding: 2px 7px;
 }
 
 .profile-card {

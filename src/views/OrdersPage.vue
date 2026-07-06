@@ -7,14 +7,21 @@
 
     <div v-if="orders.length" class="user-order-list">
       <router-link v-for="order in orders" :key="order.id" :to="`/orders/${order.id}`" class="user-order-card">
-        <div>
-          <span>{{ order.id }} · {{ order.category }}</span>
+        <div class="order-card-main">
+          <div class="order-card-meta">
+            <span>{{ order.id }}</span>
+            <em>{{ order.category }}</em>
+          </div>
           <strong>{{ order.title }}</strong>
           <p>{{ order.content }}</p>
+          <div class="order-card-foot">
+            <van-icon name="location-o" />
+            <span>{{ order.address }}</span>
+          </div>
         </div>
         <div class="order-status-side">
           <van-tag :color="statusColor(order.currentStep)">{{ getCurrentStep(order).title }}</van-tag>
-          <em>{{ order.address }}</em>
+          <em>{{ formatOrderTime(order.createdAt) }}</em>
         </div>
       </router-link>
     </div>
@@ -41,5 +48,14 @@ function statusColor(currentStep) {
     return '#0f6bdc';
   }
   return '#c98212';
+}
+
+function formatOrderTime(value) {
+  return new Intl.DateTimeFormat('zh-CN', {
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(value));
 }
 </script>
