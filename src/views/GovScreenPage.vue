@@ -27,17 +27,17 @@
         <div class="level-stack">
           <div class="level-line">
             <span>红</span>
-            <van-progress :percentage="percent(item.red, item.total)" color="#d33f49" stroke-width="7" pivot-text="" />
+            <van-progress :percentage="percent(item.red, item.total)" color="var(--van-danger-color)" stroke-width="7" pivot-text="" />
             <b>{{ item.red }}</b>
           </div>
           <div class="level-line">
             <span>黄</span>
-            <van-progress :percentage="percent(item.yellow, item.total)" color="#c98212" stroke-width="7" pivot-text="" />
+            <van-progress :percentage="percent(item.yellow, item.total)" color="var(--van-warning-color)" stroke-width="7" pivot-text="" />
             <b>{{ item.yellow }}</b>
           </div>
           <div class="level-line">
             <span>绿</span>
-            <van-progress :percentage="percent(item.green, item.total)" color="#11875d" stroke-width="7" pivot-text="" />
+            <van-progress :percentage="percent(item.green, item.total)" color="var(--van-success-color)" stroke-width="7" pivot-text="" />
             <b>{{ item.green }}</b>
           </div>
         </div>
@@ -52,7 +52,7 @@
     <section class="panel">
       <div class="panel-head">
         <strong>重点关注</strong>
-        <van-tag color="#d33f49">实时待办</van-tag>
+        <van-tag type="danger">实时待办</van-tag>
       </div>
       <div class="focus-list">
         <article v-for="item in elderFocus" :key="item.title" class="focus-item">

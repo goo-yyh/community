@@ -32,7 +32,7 @@
     <section class="panel">
       <div class="panel-head">
         <strong>暖心兑换</strong>
-        <van-tag color="#11875d">积分可用</van-tag>
+        <van-tag type="success">积分可用</van-tag>
       </div>
       <div class="reward-list">
         <button v-for="item in rewards" :key="item.name" class="reward-item" type="button" @click="redeem(item.name)">

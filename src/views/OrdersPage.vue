@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="order-status-side">
-          <van-tag :color="statusColor(order.currentStep)">{{ getCurrentStep(order).title }}</van-tag>
+          <van-tag :type="statusType(order.currentStep)">{{ getCurrentStep(order).title }}</van-tag>
           <em>{{ formatOrderTime(order.createdAt) }}</em>
         </div>
       </router-link>
@@ -40,14 +40,14 @@ import { useOrders } from '../stores/orders';
 
 const { orders, getCurrentStep } = useOrders();
 
-function statusColor(currentStep) {
+function statusType(currentStep) {
   if (currentStep >= 4) {
-    return '#11875d';
+    return 'success';
   }
   if (currentStep >= 2) {
-    return '#0f6bdc';
+    return 'primary';
   }
-  return '#c98212';
+  return 'warning';
 }
 
 function formatOrderTime(value) {

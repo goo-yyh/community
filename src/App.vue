@@ -115,11 +115,6 @@ const leftTabs = computed(() => routeItems.slice(0, 2));
 const rightTabs = computed(() => routeItems.slice(2));
 
 const themeVars = {
-  primaryColor: '#0f6bdc',
-  buttonPrimaryBackground: '#0f6bdc',
-  buttonPrimaryBorderColor: '#0f6bdc',
-  tabActiveTextColor: '#0f6bdc',
-  tabLineColor: '#0f6bdc',
   radiusMd: '8px',
 };
 

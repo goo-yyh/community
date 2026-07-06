@@ -16,7 +16,7 @@
     <section class="panel">
       <div class="panel-head">
         <strong>验收结论</strong>
-        <van-tag color="#0f6bdc">可复制</van-tag>
+        <van-tag type="primary">可复制</van-tag>
       </div>
       <p class="panel-copy">
         服务平台统一受理，小区管家统一调配，从公益、低偿、有偿三个角度匹配不同服务人员，完成服务记录、回访和监督。

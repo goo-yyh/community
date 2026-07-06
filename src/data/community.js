@@ -22,7 +22,7 @@ export const mallItems = [
     unit: '袋',
     tag: '社区优选',
     icon: 'gift-card-o',
-    color: '#0f6bdc',
+    color: 'var(--van-primary-color)',
     orderText: '购买东北长粒香大米 1 袋，送到 8 栋 1101。',
   },
   {
@@ -34,7 +34,7 @@ export const mallItems = [
     unit: '盒',
     tag: '热销',
     icon: 'points',
-    color: '#11875d',
+    color: 'var(--van-success-color)',
     orderText: '购买谷物鲜鸡蛋 1 盒，送到 8 栋 1101。',
   },
   {
@@ -46,7 +46,7 @@ export const mallItems = [
     unit: '箱',
     tag: '满减',
     icon: 'shop-o',
-    color: '#2f80ed',
+    color: 'var(--van-primary-color)',
     orderText: '购买低脂纯牛奶 1 箱，送到 8 栋 1101。',
   },
   {
@@ -58,7 +58,7 @@ export const mallItems = [
     unit: '提',
     tag: '家庭必备',
     icon: 'coupon-o',
-    color: '#b96f12',
+    color: 'var(--van-warning-color)',
     orderText: '购买三层抽纸家庭装 1 提，送到 8 栋 1101。',
   },
   {
@@ -70,7 +70,7 @@ export const mallItems = [
     unit: '份',
     tag: '今日鲜配',
     icon: 'flower-o',
-    color: '#0f8f6d',
+    color: 'var(--van-success-color)',
     orderText: '购买时令蔬菜组合 1 份，送到 8 栋 1101。',
   },
   {
@@ -82,7 +82,7 @@ export const mallItems = [
     unit: '瓶',
     tag: '日用',
     icon: 'brush-o',
-    color: '#6b5bd6',
+    color: 'var(--van-primary-color)',
     orderText: '购买除菌洗衣液 1 瓶，送到 8 栋 1101。',
   },
 ];
@@ -108,40 +108,40 @@ export const stakeholderCards = [
     key: 'owner',
     name: '普通业主',
     icon: 'home-o',
-    color: '#0f6bdc',
-    bg: '#e8f2ff',
+    color: 'var(--van-primary-color)',
+    bg: 'var(--van-active-color)',
     summary: '报修、预约服务，家属代老人发布与下单。',
   },
   {
     key: 'elder',
     name: '老年人',
     icon: 'phone-circle-o',
-    color: '#d33f49',
-    bg: '#ffecee',
+    color: 'var(--van-danger-color)',
+    bg: 'var(--van-active-color)',
     summary: '通过电话、4G智能主机、前台、探访联系管家。',
   },
   {
     key: 'volunteer',
     name: '志愿者',
     icon: 'friends-o',
-    color: '#11875d',
-    bg: '#e9f8f0',
+    color: 'var(--van-success-color)',
+    bg: 'var(--van-active-color)',
     summary: '承接探访、助聊、代买、送餐等低风险服务。',
   },
   {
     key: 'merchant',
     name: '便民商户',
     icon: 'shop-o',
-    color: '#b96f12',
-    bg: '#fff5df',
+    color: 'var(--van-warning-color)',
+    bg: 'var(--van-active-color)',
     summary: '提供助餐、代购、药品配送和生活物资保供。',
   },
   {
     key: 'worker',
     name: '技工',
     icon: 'setting-o',
-    color: '#6b5bd6',
-    bg: '#f0edff',
+    color: 'var(--van-primary-color)',
+    bg: 'var(--van-active-color)',
     summary: '承接维修、保洁、安装、适老化改造。',
   },
 ];
@@ -150,8 +150,8 @@ export const serviceRolePages = {
   owner: {
     title: '普通业主',
     subtitle: '报修、预约服务，家属也可以代老人提交需求。',
-    color: '#0f6bdc',
-    bg: '#e8f2ff',
+    color: 'var(--van-primary-color)',
+    bg: 'var(--van-active-color)',
     icon: 'home-o',
     formTitle: '提交服务需求',
     submitText: '提交给小区管家',
@@ -174,8 +174,8 @@ export const serviceRolePages = {
   elder: {
     title: '老年人',
     subtitle: '不会操作手机也可以由管家、家属或设备发起服务。',
-    color: '#d33f49',
-    bg: '#ffecee',
+    color: 'var(--van-danger-color)',
+    bg: 'var(--van-active-color)',
     icon: 'phone-circle-o',
     formTitle: '发起关怀服务',
     submitText: '通知管家和家属',
@@ -198,8 +198,8 @@ export const serviceRolePages = {
   volunteer: {
     title: '志愿者',
     subtitle: '查看附近任务，接单后完成打卡并获得积分。',
-    color: '#11875d',
-    bg: '#e9f8f0',
+    color: 'var(--van-success-color)',
+    bg: 'var(--van-active-color)',
     icon: 'friends-o',
     formTitle: '发布可服务时间',
     submitText: '更新志愿排班',
@@ -222,8 +222,8 @@ export const serviceRolePages = {
   merchant: {
     title: '便民商户',
     subtitle: '处理助餐、药品配送和生活物资保供订单。',
-    color: '#b96f12',
-    bg: '#fff5df',
+    color: 'var(--van-warning-color)',
+    bg: 'var(--van-active-color)',
     icon: 'shop-o',
     formTitle: '更新可供服务',
     submitText: '同步给小区管家',
@@ -246,8 +246,8 @@ export const serviceRolePages = {
   worker: {
     title: '技工',
     subtitle: '承接维修、保洁、安装和适老化改造工单。',
-    color: '#6b5bd6',
-    bg: '#f0edff',
+    color: 'var(--van-primary-color)',
+    bg: 'var(--van-active-color)',
     icon: 'setting-o',
     formTitle: '更新接单能力',
     submitText: '更新接单状态',
@@ -274,7 +274,7 @@ export const scenarios = {
     title: '普通业主：家中漏水报修',
     desc: '居民通过小程序或管家热线提交维修需求，管家派单并跟踪结果。',
     risk: '普通工单',
-    color: '#0f6bdc',
+    color: 'var(--van-primary-color)',
     steps: [
       ['业主发起', '通过小程序、热线或物业前台提交漏水报修。'],
       ['管家识别', '判断为维修工单，确认地址、紧急程度和是否影响邻居。'],
@@ -287,7 +287,7 @@ export const scenarios = {
     title: '老年人：不会用手机也能买药',
     desc: '老人按 4G智能主机或拨管家热线，管家代录工单并通知家属。',
     risk: '黄色工单',
-    color: '#c98212',
+    color: 'var(--van-warning-color)',
     steps: [
       ['老人呼叫', '按 4G智能主机或拨打床头卡上的管家热线。'],
       ['自动弹屏', '管家看到老人姓名、房号、风险等级、慢病备注和家属电话。'],
@@ -300,7 +300,7 @@ export const scenarios = {
     title: '志愿者：邻里探访助聊',
     desc: '管家发布探访任务，志愿者按权限接单，服务后获得积分。',
     risk: '公益互助',
-    color: '#11875d',
+    color: 'var(--van-success-color)',
     steps: [
       ['任务发布', '管家按老人分级计划发布每周探访任务。'],
       ['志愿者接单', '同楼栋或附近志愿者报名，系统校验权限和时间。'],
@@ -313,7 +313,7 @@ export const scenarios = {
     title: '便民商户：助餐与物资配送',
     desc: '小区管家组织餐饮商户和物资配送力量，保障老人和困难家庭日常需要。',
     risk: '便民服务',
-    color: '#0f6bdc',
+    color: 'var(--van-primary-color)',
     steps: [
       ['需求汇总', '管家统计老人助餐和居民团餐需求。'],
       ['助餐供给', '合作餐饮商户提供套餐、配送时间和适老备注。'],
@@ -326,7 +326,7 @@ export const scenarios = {
     title: '技工：适老化扶手安装',
     desc: '管家派认证技工评估、施工、验收，符合条件进入补贴台账。',
     risk: '专业服务',
-    color: '#6b5bd6',
+    color: 'var(--van-primary-color)',
     steps: [
       ['需求提出', '老人、家属或管家提出卫生间扶手安装需求。'],
       ['上门评估', '认证技工上门测量，给出方案和工期。'],
@@ -344,7 +344,7 @@ export const workOrders = [
     title: '红色老人呼叫：3 栋 602 王阿姨',
     desc: '4G智能主机触发，疑似摔倒，家属暂未接听。',
     status: '紧急上门',
-    color: '#d33f49',
+    color: 'var(--van-danger-color)',
     assignee: '物业巡逻 + 李管家',
     response: '8 分钟',
     trace: [
@@ -360,7 +360,7 @@ export const workOrders = [
     title: '普通业主报修：8 栋 1101 厨房漏水',
     desc: '已派认证水电工，预计 18 分钟到达。',
     status: '处理中',
-    color: '#c98212',
+    color: 'var(--van-warning-color)',
     assignee: '张师傅',
     response: '18 分钟',
     trace: [
@@ -375,7 +375,7 @@ export const workOrders = [
     title: '志愿者任务：黄爷爷每周探访',
     desc: '楼栋志愿者已接单，今日 16:30 上门。',
     status: '已接单',
-    color: '#11875d',
+    color: 'var(--van-success-color)',
     assignee: '楼栋志愿者陈阿姨',
     response: '今日完成',
     trace: [
@@ -390,7 +390,7 @@ export const workOrders = [
     title: '便民助餐：独居老人午餐配送 28 份',
     desc: '餐饮商户已出餐，配送人员正在逐户确认。',
     status: '配送中',
-    color: '#0f6bdc',
+    color: 'var(--van-primary-color)',
     assignee: '安心助餐点',
     response: '30 分钟',
     trace: [
@@ -425,17 +425,17 @@ export const communities = [
 ];
 
 export const elderFocus = [
-  { title: '红色老人紧急呼叫', desc: '3 起正在处置，均已通知管家和家属', status: '紧急', color: '#d33f49' },
-  { title: '今日探访未完成', desc: '7 户待上门，集中在桂花小区和江湾小区', status: '待办', color: '#c98212' },
-  { title: '重复求助老人', desc: '11 人本周有 2 次以上求助记录', status: '跟进', color: '#0f6bdc' },
-  { title: '本月回访满意度', desc: '抽样回访 168 人，满意度保持稳定', status: '4.8 分', color: '#11875d' },
+  { title: '红色老人紧急呼叫', desc: '3 起正在处置，均已通知管家和家属', status: '紧急', color: 'var(--van-danger-color)' },
+  { title: '今日探访未完成', desc: '7 户待上门，集中在桂花小区和江湾小区', status: '待办', color: 'var(--van-warning-color)' },
+  { title: '重复求助老人', desc: '11 人本周有 2 次以上求助记录', status: '跟进', color: 'var(--van-primary-color)' },
+  { title: '本月回访满意度', desc: '抽样回访 168 人，满意度保持稳定', status: '4.8 分', color: 'var(--van-success-color)' },
 ];
 
 export const volunteerMix = [
-  { label: '探访助聊', value: 118, percent: 92, color: '#0f6bdc' },
-  { label: '助餐送达', value: 82, percent: 70, color: '#11875d' },
-  { label: '代买代办', value: 64, percent: 54, color: '#c98212' },
-  { label: '陪同维修', value: 54, percent: 46, color: '#6b5bd6' },
+  { label: '探访助聊', value: 118, percent: 92, color: 'var(--van-primary-color)' },
+  { label: '助餐送达', value: 82, percent: 70, color: 'var(--van-success-color)' },
+  { label: '代买代办', value: 64, percent: 54, color: 'var(--van-warning-color)' },
+  { label: '陪同维修', value: 54, percent: 46, color: 'var(--van-primary-color)' },
 ];
 
 export const elderGroups = {

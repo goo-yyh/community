@@ -34,7 +34,7 @@
     <section class="panel">
       <div class="panel-head">
         <strong>{{ page.formTitle }}</strong>
-        <van-tag :color="page.color">{{ activeActionTitle }}</van-tag>
+        <van-tag type="primary">{{ activeActionTitle }}</van-tag>
       </div>
       <van-form class="service-form" @submit="submitRequest">
         <van-field v-model="form.type" name="type" label="事项" placeholder="请输入服务事项" />
@@ -65,7 +65,7 @@
             <span>{{ task.desc }}</span>
           </div>
           <div class="task-actions">
-            <van-tag :color="statusColor(taskStatus(task))">{{ taskStatus(task) }}</van-tag>
+            <van-tag :type="statusType(taskStatus(task))">{{ taskStatus(task) }}</van-tag>
             <van-button size="small" plain type="primary" round @click="handleTask(task)">
               {{ taskButtonText(task) }}
             </van-button>
@@ -77,7 +77,7 @@
     <section v-if="submittedRecords.length" class="panel">
       <div class="panel-head">
         <strong>我的提交</strong>
-        <van-tag color="#11875d">已记录</van-tag>
+        <van-tag type="success">已记录</van-tag>
       </div>
       <div class="record-list">
         <article v-for="record in submittedRecords" :key="record.id" class="record-card">
@@ -179,13 +179,13 @@ function handleTask(task) {
   showToast('已完成，记录已同步给管家');
 }
 
-function statusColor(status) {
+function statusType(status) {
   if (status === '已完成') {
-    return '#11875d';
+    return 'success';
   }
   if (status === '已接单' || status === '处理中' || status === '配送中' || status === '已安排') {
-    return '#0f6bdc';
+    return 'primary';
   }
-  return '#c98212';
+  return 'warning';
 }
 </script>

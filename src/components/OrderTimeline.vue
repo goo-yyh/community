@@ -14,7 +14,7 @@
         <p>{{ step.desc }}</p>
         <em>{{ step.time || '待更新' }}</em>
       </div>
-      <van-tag :color="statusColor(step.status)">{{ step.status }}</van-tag>
+      <van-tag :type="statusType(step.status)">{{ step.status }}</van-tag>
     </div>
   </div>
 </template>
@@ -34,13 +34,13 @@ function flowClass(status) {
   };
 }
 
-function statusColor(status) {
+function statusType(status) {
   if (status === '已完成') {
-    return '#11875d';
+    return 'success';
   }
   if (status === '进行中') {
-    return '#0f6bdc';
+    return 'primary';
   }
-  return '#9aa8b8';
+  return 'default';
 }
 </script>
