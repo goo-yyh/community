@@ -12,8 +12,8 @@
             </div>
           </div>
 
-          <header class="mini-nav">
-            <button class="nav-icon" type="button" aria-label="返回" @click="goBack">
+          <header class="mini-nav" :class="{ 'mini-nav--no-back': !showBackButton }">
+            <button v-if="showBackButton" class="nav-icon" type="button" aria-label="返回" @click="goBack">
               <van-icon name="arrow-left" />
             </button>
             <div>
@@ -126,6 +126,7 @@ const currentTitle = computed(() => {
 
   return route.meta.title ?? '小区管家';
 });
+const showBackButton = computed(() => route.path !== '/overview');
 
 onMounted(() => {
   portalReady.value = true;

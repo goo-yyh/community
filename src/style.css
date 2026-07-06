@@ -250,6 +250,10 @@ a {
   background: color-mix(in srgb, var(--van-background) 96%, transparent);
 }
 
+.mini-nav--no-back {
+  grid-template-columns: minmax(0, 1fr) 74px;
+}
+
 .nav-icon {
   width: 34px;
   height: 34px;
