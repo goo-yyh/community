@@ -49,7 +49,7 @@
               aria-label="一键发布订单"
             >
               <van-icon name="plus" />
-              <span>一键发布</span>
+              <span>发布</span>
             </router-link>
             <router-link
               v-for="item in rightTabs"
