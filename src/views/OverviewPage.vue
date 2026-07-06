@@ -1,54 +1,73 @@
 <template>
-  <section class="mini-page">
-    <div class="blue-hero">
-      <span>小区管家为中心 · 民生服务闭环</span>
-      <h1>老人有需求，管家有响应，政府有数据</h1>
-      <p>服务系统联动社区、物业、志愿者、商户和技工，形成可追踪、可监管的小区综合服务平台。</p>
-    </div>
-
-    <div class="metric-grid">
-      <div v-for="item in overviewMetrics" :key="item.label" class="metric-tile">
-        <strong>{{ item.value }}</strong>
-        <span>{{ item.label }}</span>
+  <section class="mini-page home-page">
+    <div class="home-header">
+      <div class="home-tabs">
+        <span class="active">首页</span>
+        <span>便民服务</span>
+        <span>邻里互助</span>
       </div>
-    </div>
-
-    <section class="panel">
-      <div class="panel-head">
-        <strong>功能入口</strong>
-        <van-tag plain type="primary">8 个模块</van-tag>
-      </div>
-      <div class="route-grid">
-        <router-link v-for="item in routeItems.slice(1)" :key="item.path" :to="item.path" class="route-card">
-          <van-icon :name="item.icon" />
-          <span>{{ item.title }}</span>
+      <div class="home-search-row">
+        <button class="location-pill" type="button">
+          <van-icon name="location-o" />
+          <span>新城市花园</span>
+          <van-icon name="arrow-down" />
+        </button>
+        <router-link class="home-search" to="/publish">
+          <span>搜索上门服务、技工、商户</span>
+          <strong>搜索</strong>
         </router-link>
       </div>
+    </div>
+
+    <section class="service-grid-card">
+      <router-link
+        v-for="item in homeQuickActions"
+        :key="item.title"
+        class="home-service"
+        :to="{ path: '/publish', query: { text: item.text } }"
+      >
+        <span>
+          <van-icon :name="item.icon" />
+        </span>
+        <strong>{{ item.title }}</strong>
+        <em>{{ item.desc }}</em>
+      </router-link>
     </section>
 
+    <router-link class="home-banner" to="/mall">
+      <div>
+        <span>民生商城</span>
+        <strong>助餐、买药、维修服务都能直接下单</strong>
+      </div>
+      <van-icon name="arrow" />
+    </router-link>
+
     <section class="panel">
       <div class="panel-head">
-        <strong>今日运行</strong>
-        <van-tag color="#11875d">实时运行</van-tag>
+        <strong>最近订单</strong>
+        <router-link to="/orders">查看全部</router-link>
       </div>
-      <div class="notice-list">
-        <router-link to="/elder-device" class="notice-item urgent">
-          <span>红色呼叫</span>
-          <strong>3 栋 602 王阿姨已接通管家中心</strong>
+      <div v-if="latestOrder" class="home-order">
+        <router-link :to="`/orders/${latestOrder.id}`">
+          <strong>{{ latestOrder.title }}</strong>
+          <span>{{ latestOrder.category }} · {{ currentStep.title }}</span>
+          <p>{{ latestOrder.content }}</p>
         </router-link>
-        <router-link to="/workbench" class="notice-item">
-          <span>工单派发</span>
-          <strong>厨房漏水已派认证水电工，预计 18 分钟到达</strong>
-        </router-link>
-        <router-link to="/gov-screen" class="notice-item">
-          <span>街道视图</span>
-          <strong>5 个小区全部在线，本月互助完成率 96.5%</strong>
-        </router-link>
+      </div>
+      <div v-else class="empty-panel">
+        <van-icon name="add-o" />
+        <span>还没有订单，点击底部圆形按钮发布需求</span>
       </div>
     </section>
   </section>
 </template>
 
 <script setup>
-import { overviewMetrics, routeItems } from '../data/community';
+import { computed } from 'vue';
+import { homeQuickActions } from '../data/community';
+import { useOrders } from '../stores/orders';
+
+const { orders, getCurrentStep } = useOrders();
+const latestOrder = computed(() => orders.value[0]);
+const currentStep = computed(() => (latestOrder.value ? getCurrentStep(latestOrder.value) : undefined));
 </script>

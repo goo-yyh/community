@@ -32,10 +32,31 @@
 
           <nav class="route-dock" aria-label="小程序模块导航">
             <router-link
-              v-for="item in routeItems"
+              v-for="item in leftTabs"
               :key="item.path"
               :to="item.path"
               class="route-dock-item"
+              :class="{ active: isTabActive(item) }"
+              :aria-label="item.title"
+            >
+              <van-icon :name="item.icon" />
+              <span>{{ item.short }}</span>
+            </router-link>
+            <router-link
+              to="/publish"
+              class="publish-dock-button"
+              :class="{ active: route.path === '/publish' }"
+              aria-label="一键发布订单"
+            >
+              <van-icon name="plus" />
+              <span>一键发布</span>
+            </router-link>
+            <router-link
+              v-for="item in rightTabs"
+              :key="item.path"
+              :to="item.path"
+              class="route-dock-item"
+              :class="{ active: isTabActive(item) }"
               :aria-label="item.title"
             >
               <van-icon :name="item.icon" />
@@ -90,6 +111,8 @@ const router = useRouter();
 const showMenu = ref(false);
 const portalReady = ref(false);
 const miniappPortalSelector = '#miniapp-portal';
+const leftTabs = computed(() => routeItems.slice(0, 2));
+const rightTabs = computed(() => routeItems.slice(2));
 
 const themeVars = {
   primaryColor: '#0f6bdc',
@@ -141,6 +164,15 @@ function goBack() {
     return;
   }
 
-  router.push('/overview');
+  if (window.history.state?.back) {
+    router.back();
+    return;
+  }
+
+  router.push(route.meta.tab ?? '/overview');
+}
+
+function isTabActive(item) {
+  return route.meta.tab === item.path || route.path === item.path;
 }
 </script>

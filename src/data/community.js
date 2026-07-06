@@ -1,13 +1,68 @@
 export const routeItems = [
-  { path: '/overview', title: '项目总览', short: '总览', icon: 'wap-home-o' },
-  { path: '/stakeholders', title: '服务入口', short: '入口', icon: 'cluster-o' },
-  { path: '/workbench', title: '管家工作台', short: '工单', icon: 'todo-list-o' },
-  { path: '/gov-screen', title: '政府数据大屏', short: '大屏', icon: 'bar-chart-o' },
-  { path: '/elder-device', title: '4G智能主机呼叫', short: '设备', icon: 'phone-circle-o' },
-  { path: '/care-points', title: '关怀积分与保障', short: '积分', icon: 'gift-o' },
-  { path: '/ai-governance', title: 'AI 与治理闭环', short: 'AI', icon: 'guide-o' },
-  { path: '/pilot', title: '运营指标', short: '指标', icon: 'medal-o' },
+  { path: '/overview', title: '首页', short: '首页', icon: 'wap-home-o' },
+  { path: '/mall', title: '商城', short: '商城', icon: 'shop-o' },
+  { path: '/orders', title: '订单', short: '订单', icon: 'orders-o' },
+  { path: '/mine', title: '我的', short: '我的', icon: 'user-o' },
 ];
+
+export const homeQuickActions = [
+  { title: '上门维修', desc: '水电、门窗、厨卫', icon: 'setting-o', text: '我家需要上门维修，请安排师傅联系。' },
+  { title: '助餐配送', desc: '午餐、晚餐、适老餐', icon: 'shop-o', text: '帮家里老人预约今天的助餐配送。' },
+  { title: '买药代办', desc: '常用药、慢病药', icon: 'records-o', text: '需要代买常用药，请管家联系确认药品。' },
+  { title: '保洁安装', desc: '助洁、安装、疏通', icon: 'brush-o', text: '想预约一次上门保洁或安装服务。' },
+];
+
+export const mallItems = [
+  {
+    id: 'meal',
+    title: '安心助餐套餐',
+    desc: '适老午餐，支持低盐低糖备注',
+    price: '18',
+    unit: '份',
+    icon: 'shop-o',
+    color: '#0f6bdc',
+    orderText: '我要订一份安心助餐套餐，送到 3 栋 602。',
+  },
+  {
+    id: 'medicine',
+    title: '常用药代买',
+    desc: '药店确认后配送到家',
+    price: '按实结算',
+    unit: '',
+    icon: 'records-o',
+    color: '#11875d',
+    orderText: '需要代买常用药，请管家联系我确认药品名称和数量。',
+  },
+  {
+    id: 'repair',
+    title: '水电维修上门',
+    desc: '漏水、跳闸、龙头更换',
+    price: '39',
+    unit: '起',
+    icon: 'setting-o',
+    color: '#6b5bd6',
+    orderText: '厨房水槽下方漏水，请安排水电师傅上门维修。',
+  },
+  {
+    id: 'clean',
+    title: '半日助洁服务',
+    desc: '卫生间、厨房、阳台重点清洁',
+    price: '88',
+    unit: '次',
+    icon: 'brush-o',
+    color: '#b96f12',
+    orderText: '想预约一次半日助洁服务，优先清洁厨房和卫生间。',
+  },
+];
+
+export const profileInfo = {
+  name: '李女士',
+  community: '新城市花园',
+  address: '8 栋 1101',
+  phone: '13800008888',
+  steward: '李管家',
+  points: 680,
+};
 
 export const overviewMetrics = [
   { value: '5', label: '接入小区' },
