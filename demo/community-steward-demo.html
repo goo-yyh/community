@@ -1,0 +1,2574 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>未来小区综合服务项目 Demo</title>
+        <style>
+            :root {
+                --ink: #172033;
+                --muted: #68758a;
+                --line: #dfe6ee;
+                --paper: #ffffff;
+                --bg: #f3f6f9;
+                --navy: #17324d;
+                --teal: #0d9488;
+                --green: #1f8a5b;
+                --amber: #c47b1b;
+                --red: #c93d3d;
+                --blue: #2867b2;
+                --violet: #6d5bd0;
+                --shadow: 0 18px 45px rgba(24, 38, 61, 0.12);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+                min-height: 100%;
+                color: var(--ink);
+                background:
+                    radial-gradient(
+                        circle at 20% 0%,
+                        rgba(13, 148, 136, 0.14),
+                        transparent 28%
+                    ),
+                    radial-gradient(
+                        circle at 82% 12%,
+                        rgba(196, 123, 27, 0.14),
+                        transparent 26%
+                    ),
+                    linear-gradient(180deg, #f6f8fb 0%, #eef3f6 100%);
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "PingFang SC",
+                    "Microsoft YaHei", "Segoe UI", sans-serif;
+                letter-spacing: 0;
+            }
+
+            button,
+            input,
+            select {
+                font: inherit;
+            }
+
+            button {
+                border: 0;
+                cursor: pointer;
+            }
+
+            .app {
+                min-height: 100vh;
+                display: grid;
+                grid-template-columns: 300px minmax(0, 1fr);
+            }
+
+            .side {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                padding: 26px 22px;
+                color: #eef5f7;
+                background: linear-gradient(
+                    180deg,
+                    #17324d 0%,
+                    #0f273f 56%,
+                    #14352f 100%
+                );
+                overflow-y: auto;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 28px;
+            }
+
+            .brand-mark {
+                width: 44px;
+                height: 44px;
+                border-radius: 12px;
+                display: grid;
+                place-items: center;
+                background: #f4fbf9;
+                color: var(--navy);
+                font-weight: 900;
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+            }
+
+            .brand h1 {
+                margin: 0;
+                font-size: 19px;
+                line-height: 1.25;
+            }
+
+            .brand p {
+                margin: 3px 0 0;
+                color: rgba(238, 245, 247, 0.72);
+                font-size: 12px;
+            }
+
+            .nav-title {
+                margin: 24px 0 10px;
+                color: rgba(238, 245, 247, 0.62);
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            .nav {
+                display: grid;
+                gap: 8px;
+            }
+
+            .nav button {
+                width: 100%;
+                padding: 12px 12px;
+                border-radius: 8px;
+                color: rgba(238, 245, 247, 0.82);
+                background: rgba(255, 255, 255, 0.06);
+                text-align: left;
+                transition: 0.18s ease;
+                display: grid;
+                grid-template-columns: 28px 1fr;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .nav button.active,
+            .nav button:hover {
+                color: #fff;
+                background: rgba(255, 255, 255, 0.15);
+                transform: translateX(2px);
+            }
+
+            .mini-icon {
+                width: 28px;
+                height: 28px;
+                border-radius: 8px;
+                display: grid;
+                place-items: center;
+                background: rgba(255, 255, 255, 0.12);
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .side-card {
+                margin-top: 22px;
+                padding: 16px;
+                border: 1px solid rgba(255, 255, 255, 0.16);
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            .side-card strong {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 13px;
+            }
+
+            .side-card p {
+                margin: 0;
+                color: rgba(238, 245, 247, 0.72);
+                font-size: 12px;
+                line-height: 1.65;
+            }
+
+            .main {
+                min-width: 0;
+                padding: 28px;
+            }
+
+            .hero {
+                min-height: 390px;
+                padding: 40px;
+                border-radius: 18px;
+                color: #fff;
+                background:
+                    linear-gradient(
+                        100deg,
+                        rgba(23, 50, 77, 0.96),
+                        rgba(20, 84, 80, 0.76)
+                    ),
+                    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='760' viewBox='0 0 1400 760'%3E%3Crect width='1400' height='760' fill='%2320443e'/%3E%3Cg opacity='.28' fill='none' stroke='%23fff' stroke-width='2'%3E%3Cpath d='M120 560h1160M160 500h1080M220 440h960M290 380h820M370 320h660'/%3E%3Cpath d='M180 560V250h180v310M420 560V190h230v370M720 560V265h170v295M940 560V220h250v340'/%3E%3C/g%3E%3Cg fill='%23f3c56b' opacity='.38'%3E%3Ccircle cx='310' cy='310' r='5'/%3E%3Ccircle cx='490' cy='260' r='5'/%3E%3Ccircle cx='760' cy='340' r='5'/%3E%3Ccircle cx='1030' cy='292' r='5'/%3E%3C/g%3E%3C/svg%3E")
+                        center/cover;
+                box-shadow: var(--shadow);
+                display: grid;
+                grid-template-columns: minmax(0, 1.1fr) 420px;
+                gap: 30px;
+                align-items: center;
+            }
+
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 7px 11px;
+                border-radius: 999px;
+                color: #dffcf7;
+                background: rgba(255, 255, 255, 0.12);
+                font-size: 13px;
+                font-weight: 700;
+            }
+
+            .hero h2 {
+                max-width: 840px;
+                margin: 22px 0 16px;
+                font-size: clamp(34px, 4vw, 58px);
+                line-height: 1.08;
+                letter-spacing: 0;
+            }
+
+            .hero p {
+                max-width: 760px;
+                margin: 0;
+                color: rgba(255, 255, 255, 0.84);
+                font-size: 18px;
+                line-height: 1.8;
+            }
+
+            .hero-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 28px;
+            }
+
+            .btn {
+                min-height: 42px;
+                padding: 0 16px;
+                border-radius: 8px;
+                color: var(--ink);
+                background: #fff;
+                font-weight: 800;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+            }
+
+            .btn.secondary {
+                color: #fff;
+                background: rgba(255, 255, 255, 0.14);
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+            }
+
+            .hero-panel {
+                padding: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.12);
+                backdrop-filter: blur(8px);
+            }
+
+            .panel-title {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+                align-items: center;
+                margin-bottom: 14px;
+                font-weight: 900;
+            }
+
+            .live {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                color: #dffcf7;
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #66e0b5;
+                box-shadow: 0 0 0 5px rgba(102, 224, 181, 0.18);
+            }
+
+            .metric-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .metric {
+                padding: 14px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.13);
+            }
+
+            .metric strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 26px;
+                line-height: 1;
+            }
+
+            .metric span {
+                color: rgba(255, 255, 255, 0.75);
+                font-size: 12px;
+            }
+
+            .section {
+                margin-top: 28px;
+                padding: 28px;
+                border-radius: 18px;
+                background: var(--paper);
+                box-shadow: var(--shadow);
+            }
+
+            .section-head {
+                display: flex;
+                justify-content: space-between;
+                gap: 18px;
+                align-items: flex-end;
+                margin-bottom: 22px;
+            }
+
+            .section h3 {
+                margin: 0;
+                font-size: 26px;
+                line-height: 1.2;
+            }
+
+            .section-lead {
+                max-width: 820px;
+                margin: 8px 0 0;
+                color: var(--muted);
+                line-height: 1.75;
+            }
+
+            .badge {
+                display: inline-flex;
+                align-items: center;
+                min-height: 28px;
+                padding: 0 10px;
+                border-radius: 999px;
+                color: var(--navy);
+                background: #eaf2f1;
+                font-size: 12px;
+                font-weight: 800;
+                white-space: nowrap;
+            }
+
+            .stakeholder-grid {
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 14px;
+            }
+
+            .stakeholder {
+                position: relative;
+                min-height: 194px;
+                padding: 16px;
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                background: #fff;
+                overflow: hidden;
+            }
+
+            .stakeholder:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 5px;
+                background: var(--accent-color);
+            }
+
+            .stakeholder h4 {
+                margin: 10px 0 8px;
+                font-size: 17px;
+            }
+
+            .stakeholder p {
+                margin: 0;
+                color: var(--muted);
+                line-height: 1.6;
+                font-size: 13px;
+            }
+
+            .stakeholder button {
+                position: absolute;
+                left: 14px;
+                bottom: 14px;
+                padding: 8px 10px;
+                border-radius: 8px;
+                color: #fff;
+                background: var(--accent-color);
+                font-weight: 800;
+                font-size: 12px;
+            }
+
+            .flow-board {
+                display: grid;
+                grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+                gap: 18px;
+                align-items: stretch;
+            }
+
+            .scenario-list {
+                display: grid;
+                gap: 10px;
+            }
+
+            .scenario {
+                padding: 15px;
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                background: #fbfcfd;
+                text-align: left;
+                transition: 0.18s ease;
+            }
+
+            .scenario.active,
+            .scenario:hover {
+                border-color: rgba(13, 148, 136, 0.55);
+                background: #f0faf8;
+                transform: translateY(-1px);
+            }
+
+            .scenario strong {
+                display: block;
+                margin-bottom: 4px;
+                color: var(--ink);
+                font-size: 15px;
+            }
+
+            .scenario span {
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .process-card {
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
+                overflow: hidden;
+            }
+
+            .process-top {
+                padding: 18px;
+                border-bottom: 1px solid var(--line);
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .process-top h4 {
+                margin: 0 0 4px;
+                font-size: 20px;
+            }
+
+            .process-top p {
+                margin: 0;
+                color: var(--muted);
+                line-height: 1.5;
+            }
+
+            .risk {
+                padding: 8px 10px;
+                border-radius: 8px;
+                color: #fff;
+                background: var(--red);
+                font-weight: 900;
+                white-space: nowrap;
+            }
+
+            .steps {
+                display: grid;
+                gap: 0;
+                padding: 8px 18px 18px;
+            }
+
+            .step {
+                display: grid;
+                grid-template-columns: 34px 1fr;
+                gap: 12px;
+                padding: 13px 0;
+                border-bottom: 1px dashed #d7e0e8;
+                align-items: start;
+            }
+
+            .step:last-child {
+                border-bottom: 0;
+            }
+
+            .step-num {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: grid;
+                place-items: center;
+                color: #fff;
+                background: var(--teal);
+                font-size: 13px;
+                font-weight: 900;
+            }
+
+            .step strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 14px;
+            }
+
+            .step span {
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .dashboard {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) 360px;
+                gap: 18px;
+            }
+
+            .workbench {
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: #f9fbfc;
+                overflow: hidden;
+            }
+
+            .workbench-bar {
+                min-height: 58px;
+                padding: 14px 16px;
+                color: #fff;
+                background: #17324d;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .workbench-bar strong {
+                font-size: 16px;
+            }
+
+            .queue {
+                display: grid;
+                gap: 10px;
+                padding: 14px;
+            }
+
+            .ticket {
+                padding: 14px;
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                background: #fff;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .ticket h4 {
+                margin: 0 0 6px;
+                font-size: 15px;
+            }
+
+            .ticket p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.45;
+            }
+
+            .status {
+                min-width: 92px;
+                padding: 8px;
+                border-radius: 8px;
+                text-align: center;
+                color: #fff;
+                font-size: 12px;
+                font-weight: 900;
+            }
+
+            .status.red {
+                background: var(--red);
+            }
+            .status.amber {
+                background: var(--amber);
+            }
+            .status.green {
+                background: var(--green);
+            }
+            .status.blue {
+                background: var(--blue);
+            }
+
+            .ops-panel {
+                display: grid;
+                gap: 14px;
+            }
+
+            .ops-card {
+                padding: 16px;
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                background: #fff;
+            }
+
+            .ops-card h4 {
+                margin: 0 0 12px;
+                font-size: 16px;
+            }
+
+            .mini-metrics {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .mini-metric {
+                padding: 12px;
+                border-radius: 10px;
+                background: #f1f5f8;
+            }
+
+            .mini-metric strong {
+                display: block;
+                font-size: 22px;
+                line-height: 1;
+                margin-bottom: 6px;
+            }
+
+            .mini-metric span {
+                color: var(--muted);
+                font-size: 12px;
+            }
+
+            .gov-screen {
+                color: #eef7fb;
+                background:
+                    linear-gradient(
+                        135deg,
+                        rgba(12, 31, 50, 0.97),
+                        rgba(18, 72, 68, 0.94)
+                    ),
+                    radial-gradient(
+                        circle at 18% 12%,
+                        rgba(102, 224, 181, 0.18),
+                        transparent 26%
+                    ),
+                    radial-gradient(
+                        circle at 86% 0%,
+                        rgba(244, 183, 91, 0.16),
+                        transparent 28%
+                    );
+                overflow: hidden;
+            }
+
+            .gov-screen .section-head {
+                align-items: center;
+            }
+
+            .gov-screen .badge {
+                color: #dffcf7;
+                background: rgba(255, 255, 255, 0.12);
+            }
+
+            .gov-screen h3,
+            .gov-screen .section-lead {
+                color: #fff;
+            }
+
+            .screen-time {
+                min-height: 34px;
+                padding: 0 12px;
+                border-radius: 8px;
+                display: inline-flex;
+                align-items: center;
+                color: #dffcf7;
+                background: rgba(255, 255, 255, 0.1);
+                font-size: 13px;
+                font-weight: 800;
+                white-space: nowrap;
+            }
+
+            .screen-kpis {
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .screen-kpi {
+                min-height: 112px;
+                padding: 16px;
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .screen-kpi span {
+                display: block;
+                color: rgba(238, 247, 251, 0.72);
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .screen-kpi strong {
+                display: block;
+                margin: 10px 0 8px;
+                font-size: 34px;
+                line-height: 1;
+            }
+
+            .screen-kpi em {
+                color: #93e6ca;
+                font-style: normal;
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .screen-layout {
+                display: grid;
+                grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.72fr);
+                gap: 16px;
+                align-items: start;
+            }
+
+            .screen-panel {
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                border-radius: 14px;
+                background: rgba(255, 255, 255, 0.08);
+                overflow: hidden;
+            }
+
+            .screen-panel-head {
+                min-height: 50px;
+                padding: 14px 16px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .screen-panel-head h4 {
+                margin: 0;
+                font-size: 16px;
+            }
+
+            .screen-panel-head span {
+                color: rgba(238, 247, 251, 0.66);
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .community-grid {
+                display: grid;
+                gap: 10px;
+                padding: 14px;
+            }
+
+            .community-row {
+                display: grid;
+                grid-template-columns: 136px 1fr 84px 84px;
+                gap: 12px;
+                padding: 13px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.08);
+                align-items: center;
+            }
+
+            .community-name strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 15px;
+            }
+
+            .community-name span {
+                color: rgba(238, 247, 251, 0.66);
+                font-size: 12px;
+            }
+
+            .level-stack {
+                display: grid;
+                gap: 7px;
+            }
+
+            .level-line {
+                display: grid;
+                grid-template-columns: 34px 1fr 42px;
+                gap: 8px;
+                align-items: center;
+                color: rgba(238, 247, 251, 0.78);
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .level-track {
+                height: 8px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.14);
+                overflow: hidden;
+            }
+
+            .level-fill {
+                height: 100%;
+                border-radius: inherit;
+            }
+
+            .level-red {
+                background: #ef7474;
+            }
+            .level-amber {
+                background: #f0b35d;
+            }
+            .level-green {
+                background: #65d6a1;
+            }
+
+            .row-stat {
+                text-align: right;
+            }
+
+            .row-stat strong {
+                display: block;
+                font-size: 20px;
+                line-height: 1;
+            }
+
+            .row-stat span {
+                color: rgba(238, 247, 251, 0.62);
+                font-size: 12px;
+            }
+
+            .screen-side {
+                display: grid;
+                gap: 16px;
+            }
+
+            .status-list,
+            .volunteer-list {
+                display: grid;
+                gap: 10px;
+                padding: 14px;
+            }
+
+            .status-item {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 12px;
+                padding: 12px;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.08);
+                align-items: center;
+            }
+
+            .status-item strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 14px;
+            }
+
+            .status-item span {
+                color: rgba(238, 247, 251, 0.64);
+                font-size: 12px;
+            }
+
+            .status-pill {
+                padding: 7px 9px;
+                border-radius: 8px;
+                color: #fff;
+                font-size: 12px;
+                font-weight: 900;
+                white-space: nowrap;
+            }
+
+            .status-pill.red {
+                background: var(--red);
+            }
+            .status-pill.amber {
+                background: var(--amber);
+            }
+            .status-pill.green {
+                background: var(--green);
+            }
+            .status-pill.blue {
+                background: var(--blue);
+            }
+
+            .volunteer-item {
+                display: grid;
+                grid-template-columns: 1fr 70px;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .volunteer-item strong {
+                color: rgba(238, 247, 251, 0.84);
+                font-size: 13px;
+            }
+
+            .volunteer-bar {
+                height: 10px;
+                margin-top: 7px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.14);
+                overflow: hidden;
+            }
+
+            .volunteer-bar span {
+                display: block;
+                height: 100%;
+                border-radius: inherit;
+                background: linear-gradient(90deg, #65d6a1, #73b7ff);
+            }
+
+            .volunteer-item em {
+                color: #fff;
+                font-style: normal;
+                text-align: right;
+                font-weight: 900;
+            }
+
+            .screen-table {
+                margin-top: 16px;
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                border-radius: 14px;
+                overflow: hidden;
+            }
+
+            .screen-table-row {
+                display: grid;
+                grid-template-columns: 1.05fr 0.8fr repeat(
+                        6,
+                        minmax(78px, 1fr)
+                    );
+                gap: 0;
+                align-items: center;
+            }
+
+            .screen-table-row > span,
+            .screen-table-row > strong {
+                min-height: 46px;
+                padding: 12px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                color: rgba(238, 247, 251, 0.78);
+                font-size: 13px;
+                display: flex;
+                align-items: center;
+            }
+
+            .screen-table-row > strong {
+                color: #fff;
+                background: rgba(255, 255, 255, 0.1);
+                font-size: 12px;
+            }
+
+            .screen-table-row:last-child > span {
+                border-bottom: 0;
+            }
+
+            .elder-demo {
+                display: grid;
+                grid-template-columns: 380px minmax(0, 1fr);
+                gap: 18px;
+            }
+
+            .device {
+                min-height: 520px;
+                padding: 22px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: linear-gradient(180deg, #ffffff 0%, #f3f7f8 100%);
+                box-shadow: var(--shadow);
+                color: var(--ink);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                text-align: center;
+            }
+
+            .device-screen {
+                width: 100%;
+                min-height: 118px;
+                padding: 16px;
+                border: 1px solid #d9e7e4;
+                border-radius: 14px;
+                background: #eef8f6;
+                color: var(--ink);
+                display: grid;
+                align-content: center;
+                gap: 8px;
+            }
+
+            .device-screen strong {
+                font-size: 24px;
+            }
+
+            .device-screen span {
+                color: var(--muted);
+                line-height: 1.5;
+            }
+
+            .device-visual {
+                width: 100%;
+                display: grid;
+                place-items: center;
+                padding: 8px 0 4px;
+            }
+
+            .device-visual img {
+                width: min(100%, 310px);
+                height: auto;
+                display: block;
+                filter: drop-shadow(0 18px 24px rgba(24, 38, 61, 0.22));
+            }
+
+            .sos {
+                min-height: 44px;
+                padding: 0 18px;
+                border-radius: 8px;
+                color: #fff;
+                background: var(--red);
+                box-shadow: 0 12px 24px rgba(201, 61, 61, 0.22);
+                font-size: 15px;
+                font-weight: 900;
+            }
+
+            .device-foot {
+                color: var(--muted);
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .elder-side {
+                display: grid;
+                gap: 14px;
+            }
+
+            .call-log {
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: #fff;
+                overflow: hidden;
+            }
+
+            .call-log-head {
+                padding: 16px 18px;
+                border-bottom: 1px solid var(--line);
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .call-log-head h4 {
+                margin: 0;
+                font-size: 20px;
+            }
+
+            .timeline {
+                padding: 18px;
+                display: grid;
+                gap: 12px;
+            }
+
+            .event {
+                display: grid;
+                grid-template-columns: 104px 1fr;
+                gap: 12px;
+                padding: 14px;
+                border-radius: 12px;
+                background: #f7fafb;
+            }
+
+            .event time {
+                color: var(--teal);
+                font-weight: 900;
+                font-size: 13px;
+            }
+
+            .event strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 14px;
+            }
+
+            .event span {
+                color: var(--muted);
+                line-height: 1.5;
+                font-size: 13px;
+            }
+
+            .feature-panel {
+                padding: 18px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: #fff;
+            }
+
+            .feature-panel h4 {
+                margin: 0 0 12px;
+                font-size: 18px;
+            }
+
+            .feature-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .feature-tags span {
+                padding: 8px 10px;
+                border-radius: 8px;
+                color: var(--navy);
+                background: #eef4f7;
+                font-size: 13px;
+                font-weight: 800;
+            }
+
+            .feature-note {
+                margin: 12px 0 0;
+                color: var(--muted);
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .money-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 14px;
+            }
+
+            .money-card {
+                padding: 18px;
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                background: #fff;
+            }
+
+            .money-card h4 {
+                margin: 0 0 10px;
+                color: var(--muted);
+                font-size: 14px;
+            }
+
+            .money-card strong {
+                display: block;
+                font-size: 30px;
+                line-height: 1;
+                margin-bottom: 10px;
+            }
+
+            .money-card p {
+                margin: 0;
+                color: var(--muted);
+                line-height: 1.55;
+                font-size: 13px;
+            }
+
+            .settlement {
+                margin-top: 16px;
+                padding: 18px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: #fbfcfd;
+            }
+
+            .settlement-row {
+                display: grid;
+                grid-template-columns: 1fr 160px 160px;
+                gap: 12px;
+                padding: 12px 0;
+                border-bottom: 1px solid var(--line);
+                align-items: center;
+            }
+
+            .settlement-row:last-child {
+                border-bottom: 0;
+            }
+
+            .settlement-row strong {
+                font-size: 14px;
+            }
+
+            .settlement-row span {
+                color: var(--muted);
+                font-size: 13px;
+            }
+
+            .demo-footer {
+                margin: 28px 0 8px;
+                padding: 20px;
+                border-radius: 16px;
+                color: #fff;
+                background: linear-gradient(90deg, #17324d, #145450);
+                display: flex;
+                justify-content: space-between;
+                gap: 18px;
+                align-items: center;
+            }
+
+            .demo-footer strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 18px;
+            }
+
+            .demo-footer span {
+                color: rgba(255, 255, 255, 0.76);
+                line-height: 1.5;
+            }
+
+            @media (max-width: 1180px) {
+                .app {
+                    grid-template-columns: 1fr;
+                }
+
+                .side {
+                    position: static;
+                    height: auto;
+                }
+
+                .nav {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .hero,
+                .flow-board,
+                .dashboard,
+                .screen-layout,
+                .elder-demo {
+                    grid-template-columns: 1fr;
+                }
+
+                .stakeholder-grid,
+                .money-grid,
+                .screen-kpis {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .screen-table-row {
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                }
+            }
+
+            @media (max-width: 720px) {
+                .main {
+                    padding: 16px;
+                }
+
+                .hero,
+                .section {
+                    padding: 22px;
+                    border-radius: 14px;
+                }
+
+                .stakeholder-grid,
+                .money-grid,
+                .screen-kpis,
+                .metric-grid,
+                .mini-metrics,
+                .nav {
+                    grid-template-columns: 1fr;
+                }
+
+                .section-head,
+                .demo-footer,
+                .process-top,
+                .call-log-head {
+                    align-items: flex-start;
+                    flex-direction: column;
+                }
+
+                .settlement-row,
+                .event,
+                .ticket,
+                .community-row,
+                .screen-table-row {
+                    grid-template-columns: 1fr;
+                }
+
+                .device {
+                    min-height: 410px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app">
+            <aside class="side">
+                <div class="brand">
+                    <div class="brand-mark">管</div>
+                    <div>
+                        <h1>未来小区综合服务 Demo</h1>
+                    </div>
+                </div>
+
+                <div class="nav-title">演示路径</div>
+                <nav class="nav">
+                    <button class="active" data-jump="#overview">
+                        <span class="mini-icon">01</span><span>项目总览</span>
+                    </button>
+                    <button data-jump="#stakeholders">
+                        <span class="mini-icon">02</span
+                        ><span>五类主体闭环</span>
+                    </button>
+                    <button data-jump="#workbench">
+                        <span class="mini-icon">03</span><span>管家工作台</span>
+                    </button>
+                    <button data-jump="#govscreen">
+                        <span class="mini-icon">04</span
+                        ><span>政府数据大屏</span>
+                    </button>
+                    <button data-jump="#elder">
+                        <span class="mini-icon">05</span
+                        ><span>4G智能主机呼叫</span>
+                    </button>
+                    <button data-jump="#money">
+                        <span class="mini-icon">06</span
+                        ><span>关怀积分与保障</span>
+                    </button>
+                    <button data-jump="#ai">
+                        <span class="mini-icon">07</span
+                        ><span>AI 与治理闭环</span>
+                    </button>
+                    <button data-jump="#pilot">
+                        <span class="mini-icon">08</span><span>试点指标</span>
+                    </button>
+                </nav>
+
+                <div class="side-card">
+                    <strong>汇报重点</strong>
+                    <p>
+                        用小区管家把普通业主、老年人、志愿者、便民商户、技工组织到同一套服务闭环中，形成民生服务台账、重点人群关怀台账和协同治理机制。
+                    </p>
+                </div>
+            </aside>
+
+            <main class="main">
+                <section class="hero" id="overview">
+                    <div>
+                        <span class="eyebrow"
+                            >小区管家为中心 · 民生服务闭环</span
+                        >
+                        <h2>老人有需求，管家有响应，服务有人接，政府有数据</h2>
+                        <p>
+                            以小区专兼职管家为入口，服务系统为抓手，联动社区、物业、志愿者、商户、技工，建设有温度、可追踪、可监管的小区综合服务平台。
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn" data-jump="#workbench">
+                                进入管家工作台
+                            </button>
+                            <button
+                                class="btn secondary"
+                                data-jump="#govscreen"
+                            >
+                                查看政府数据大屏
+                            </button>
+                            <button class="btn secondary" data-jump="#elder">
+                                演示老人一键呼叫
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-panel">
+                        <div class="panel-title">
+                            <span>试点运行概览</span>
+                            <span class="live"
+                                ><i class="dot"></i>实时演示数据</span
+                            >
+                        </div>
+                        <div class="metric-grid">
+                            <div class="metric">
+                                <strong>5</strong><span>试点小区</span>
+                            </div>
+                            <div class="metric">
+                                <strong>500</strong><span>老人建档</span>
+                            </div>
+                            <div class="metric">
+                                <strong>200</strong><span>月互助服务单</span>
+                            </div>
+                            <div class="metric">
+                                <strong>3000</strong><span>月民生服务记录</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="stakeholders">
+                    <div class="section-head">
+                        <div>
+                            <span class="badge">一个中心 · 五类主体</span>
+                            <h3>小区管家把分散资源组织成服务网络</h3>
+                            <p class="section-lead">
+                                五类主体不是各自独立运行，而是由小区管家统一受理、分类派单、过程监督、评价回访，最后沉淀为小区治理数据。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="stakeholder-grid">
+                        <article
+                            class="stakeholder"
+                            style="--accent-color: #2867b2"
+                        >
+                            <h4>普通业主</h4>
+                            <p>
+                                报修、预约服务，家属代老人发布与下单。
+                            </p>
+                            <button data-scenario="owner">查看闭环</button>
+                        </article>
+                        <article
+                            class="stakeholder"
+                            style="--accent-color: #c93d3d"
+                        >
+                            <h4>老年人</h4>
+                            <p>
+                                通过电话、4G智能主机、前台、上门探访联系管家，获得日常和紧急服务。
+                            </p>
+                            <button data-scenario="elder">查看闭环</button>
+                        </article>
+                        <article
+                            class="stakeholder"
+                            style="--accent-color: #1f8a5b"
+                        >
+                            <h4>志愿者</h4>
+                            <p>
+                                承接探访、助聊、代买、送餐等低风险服务，获得积分和荣誉。
+                            </p>
+                            <button data-scenario="volunteer">查看闭环</button>
+                        </article>
+                        <article
+                            class="stakeholder"
+                            style="--accent-color: #c47b1b"
+                        >
+                            <h4>便民商户</h4>
+                            <p>提供助餐、代购、药品配送和生活物资保供服务。</p>
+                            <button data-scenario="merchant">查看闭环</button>
+                        </article>
+                        <article
+                            class="stakeholder"
+                            style="--accent-color: #6d5bd0"
+                        >
+                            <h4>技工</h4>
+                            <p>
+                                承接维修、保洁、安装、适老化改造，形成稳定服务记录和信誉。
+                            </p>
+                            <button data-scenario="worker">查看闭环</button>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="section-head">
+                        <div>
+                            <span class="badge">交互演示</span>
+                            <h3>选择一个场景，看小区管家如何闭环处置</h3>
+                            <p class="section-lead">
+                                演示页内置五类典型场景，用于向领导说明“需求如何进入、谁来服务、过程如何监管、结果沉淀什么”。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flow-board">
+                        <div class="scenario-list">
+                            <button
+                                class="scenario active"
+                                data-scenario="owner"
+                            >
+                                <strong>普通业主：家中漏水报修</strong
+                                ><span
+                                    >居民提交需求，管家派物业维修或认证技工上门。</span
+                                >
+                            </button>
+                            <button class="scenario" data-scenario="elder">
+                                <strong>老年人：不会用手机也能买药</strong
+                                ><span
+                                    >老人按
+                                    4G智能主机，管家代录工单并通知家属。</span
+                                >
+                            </button>
+                            <button class="scenario" data-scenario="volunteer">
+                                <strong>志愿者：邻里探访助聊</strong
+                                ><span
+                                    >志愿者按权限接单，服务后获得积分和时间币。</span
+                                >
+                            </button>
+                            <button class="scenario" data-scenario="merchant">
+                                <strong>便民商户：助餐与物资配送</strong
+                                ><span
+                                    >合作餐饮商户供餐，保障老人和困难家庭日常需要。</span
+                                >
+                            </button>
+                            <button class="scenario" data-scenario="worker">
+                                <strong>技工：适老化扶手安装</strong
+                                ><span
+                                    >管家派认证技工评估、施工、验收、回访。</span
+                                >
+                            </button>
+                        </div>
+
+                        <div class="process-card">
+                            <div class="process-top">
+                                <div>
+                                    <h4 id="processTitle">
+                                        普通业主：家中漏水报修
+                                    </h4>
+                                    <p id="processDesc">
+                                        居民通过小程序或管家热线提交维修需求，管家派单并跟踪结果。
+                                    </p>
+                                </div>
+                                <span class="risk" id="processRisk"
+                                    >普通工单</span
+                                >
+                            </div>
+                            <div class="steps" id="processSteps"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="workbench">
+                    <div class="section-head">
+                        <div>
+                            <span class="badge">小区管家工作台</span>
+                            <h3>统一受理、分类派单、过程监督、结果回访</h3>
+                            <p class="section-lead">
+                                这不是给群众增加一个入口，而是把热线、前台、小程序、4G智能主机、上门探访全部汇入管家工作台。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard">
+                        <div class="workbench">
+                            <div class="workbench-bar">
+                                <strong>今日待办工单</strong>
+                                <span>小区管家：李管家 · 值班中</span>
+                            </div>
+                            <div class="queue">
+                                <div class="ticket">
+                                    <div>
+                                        <h4>红色老人呼叫：3 栋 602 王阿姨</h4>
+                                        <p>
+                                            4G智能主机触发，疑似摔倒，家属暂未接听。
+                                        </p>
+                                    </div>
+                                    <span class="status red">紧急上门</span>
+                                </div>
+                                <div class="ticket">
+                                    <div>
+                                        <h4>
+                                            普通业主报修：8 栋 1101 厨房漏水
+                                        </h4>
+                                        <p>
+                                            已派认证水电工，预计 18 分钟到达。
+                                        </p>
+                                    </div>
+                                    <span class="status amber">处理中</span>
+                                </div>
+                                <div class="ticket">
+                                    <div>
+                                        <h4>志愿者任务：黄爷爷每周探访</h4>
+                                        <p>
+                                            楼栋志愿者已接单，今日 16:30 上门。
+                                        </p>
+                                    </div>
+                                    <span class="status green">已接单</span>
+                                </div>
+                                <div class="ticket">
+                                    <div>
+                                        <h4>
+                                            便民助餐：独居老人午餐配送 28 份
+                                        </h4>
+                                        <p>
+                                            餐饮商户已出餐，配送人员正在逐户确认。
+                                        </p>
+                                    </div>
+                                    <span class="status blue">配送中</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <aside class="ops-panel">
+                            <div class="ops-card">
+                                <h4>今日服务指标</h4>
+                                <div class="mini-metrics">
+                                    <div class="mini-metric">
+                                        <strong>42</strong><span>受理工单</span>
+                                    </div>
+                                    <div class="mini-metric">
+                                        <strong>38</strong><span>已完成</span>
+                                    </div>
+                                    <div class="mini-metric">
+                                        <strong>12m</strong
+                                        ><span>紧急平均响应</span>
+                                    </div>
+                                    <div class="mini-metric">
+                                        <strong>4.8</strong
+                                        ><span>满意度评分</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ops-card">
+                                <h4>管家七项动作</h4>
+                                <div class="steps">
+                                    <div class="step">
+                                        <span class="step-num">1</span>
+                                        <div>
+                                            <strong>受理</strong
+                                            ><span
+                                                >接入小程序、热线、4G智能主机、前台、探访需求。</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">2</span>
+                                        <div>
+                                            <strong>派单</strong
+                                            ><span
+                                                >按风险、距离、技能、信誉分匹配服务人员。</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">3</span>
+                                        <div>
+                                            <strong>回访</strong
+                                            ><span
+                                                >对老人、投诉、差评和紧急工单重点复核。</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </section>
+
+                <section class="section gov-screen" id="govscreen">
+                    <div class="section-head">
+                        <div>
+                            <span class="badge">政府领导数据大屏</span>
+                            <h3>一屏掌握各小区养老关怀和邻里互助态势</h3>
+                            <p class="section-lead">
+                                按小区汇总红黄绿等级老人数量、老人服务状况、服务次数、志愿者力量和邻里互助单数，支撑街道、民政、物业和管家协同调度。
+                            </p>
+                        </div>
+                        <span class="screen-time"
+                            >演示数据 · 今日 14:30 更新</span
+                        >
+                    </div>
+
+                    <div class="screen-kpis">
+                        <div class="screen-kpi">
+                            <span>接入小区</span><strong>5</strong
+                            ><em>全部在线</em>
+                        </div>
+                        <div class="screen-kpi">
+                            <span>重点老人总数</span><strong>500</strong
+                            ><em>红 42 · 黄 156 · 绿 302</em>
+                        </div>
+                        <div class="screen-kpi">
+                            <span>本月服务老人次数</span><strong>1286</strong
+                            ><em>较上月 +18%</em>
+                        </div>
+                        <div class="screen-kpi">
+                            <span>在册志愿者</span><strong>86</strong
+                            ><em>活跃 73 人</em>
+                        </div>
+                        <div class="screen-kpi">
+                            <span>邻里互助单数</span><strong>318</strong
+                            ><em>完成率 96.5%</em>
+                        </div>
+                    </div>
+
+                    <div class="screen-layout">
+                        <div class="screen-panel">
+                            <div class="screen-panel-head">
+                                <h4>各小区老人等级与服务覆盖</h4>
+                                <span
+                                    >红色重点关注 · 黄色定期探访 ·
+                                    绿色日常关怀</span
+                                >
+                            </div>
+                            <div class="community-grid">
+                                <div class="community-row">
+                                    <div class="community-name">
+                                        <strong>新城市花园</strong
+                                        ><span>总数 126 人 · 运行平稳</span>
+                                    </div>
+                                    <div class="level-stack">
+                                        <div class="level-line">
+                                            <span>红</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-red"
+                                                    style="width: 52%"
+                                                ></div>
+                                            </div>
+                                            <span>12</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>黄</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-amber"
+                                                    style="width: 72%"
+                                                ></div>
+                                            </div>
+                                            <span>38</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>绿</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-green"
+                                                    style="width: 88%"
+                                                ></div>
+                                            </div>
+                                            <span>76</span>
+                                        </div>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>326</strong
+                                        ><span>服务次数</span>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>22</strong><span>志愿者</span>
+                                    </div>
+                                </div>
+                                <div class="community-row">
+                                    <div class="community-name">
+                                        <strong>长新新村</strong>
+                                        <span>总数 97 人 · 需加强探访</span>
+                                    </div>
+                                    <div class="level-stack">
+                                        <div class="level-line">
+                                            <span>红</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-red"
+                                                    style="width: 35%"
+                                                ></div>
+                                            </div>
+                                            <span>8</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>黄</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-amber"
+                                                    style="width: 60%"
+                                                ></div>
+                                            </div>
+                                            <span>31</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>绿</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-green"
+                                                    style="width: 68%"
+                                                ></div>
+                                            </div>
+                                            <span>58</span>
+                                        </div>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>241</strong
+                                        ><span>服务次数</span>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>18</strong><span>志愿者</span>
+                                    </div>
+                                </div>
+                                <div class="community-row">
+                                    <div class="community-name">
+                                        <strong>春晓花园</strong>
+                                        <span>总数 99 人 · 整体稳定</span>
+                                    </div>
+                                    <div class="level-stack">
+                                        <div class="level-line">
+                                            <span>红</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-red"
+                                                    style="width: 30%"
+                                                ></div>
+                                            </div>
+                                            <span>7</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>黄</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-amber"
+                                                    style="width: 56%"
+                                                ></div>
+                                            </div>
+                                            <span>29</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>绿</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-green"
+                                                    style="width: 73%"
+                                                ></div>
+                                            </div>
+                                            <span>63</span>
+                                        </div>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>186</strong
+                                        ><span>服务次数</span>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>14</strong><span>志愿者</span>
+                                    </div>
+                                </div>
+                                <div class="community-row">
+                                    <div class="community-name">
+                                        <strong>都市明珠</strong
+                                        ><span>总数 97 人 · 助餐活跃</span>
+                                    </div>
+                                    <div class="level-stack">
+                                        <div class="level-line">
+                                            <span>红</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-red"
+                                                    style="width: 39%"
+                                                ></div>
+                                            </div>
+                                            <span>9</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>黄</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-amber"
+                                                    style="width: 64%"
+                                                ></div>
+                                            </div>
+                                            <span>33</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>绿</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-green"
+                                                    style="width: 64%"
+                                                ></div>
+                                            </div>
+                                            <span>55</span>
+                                        </div>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>278</strong
+                                        ><span>服务次数</span>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>16</strong><span>志愿者</span>
+                                    </div>
+                                </div>
+                                <div class="community-row">
+                                    <div class="community-name">
+                                        <strong>星河小区</strong
+                                        ><span>总数 81 人 · 响应较快</span>
+                                    </div>
+                                    <div class="level-stack">
+                                        <div class="level-line">
+                                            <span>红</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-red"
+                                                    style="width: 26%"
+                                                ></div>
+                                            </div>
+                                            <span>6</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>黄</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-amber"
+                                                    style="width: 49%"
+                                                ></div>
+                                            </div>
+                                            <span>25</span>
+                                        </div>
+                                        <div class="level-line">
+                                            <span>绿</span>
+                                            <div class="level-track">
+                                                <div
+                                                    class="level-fill level-green"
+                                                    style="width: 58%"
+                                                ></div>
+                                            </div>
+                                            <span>50</span>
+                                        </div>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>255</strong
+                                        ><span>服务次数</span>
+                                    </div>
+                                    <div class="row-stat">
+                                        <strong>16</strong><span>志愿者</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="screen-side">
+                            <div class="screen-panel">
+                                <div class="screen-panel-head">
+                                    <h4>老人状况重点关注</h4>
+                                    <span>实时待办</span>
+                                </div>
+                                <div class="status-list">
+                                    <div class="status-item">
+                                        <div>
+                                            <strong>红色老人紧急呼叫</strong
+                                            ><span
+                                                >3
+                                                起正在处置，均已通知管家和家属</span
+                                            >
+                                        </div>
+                                        <span class="status-pill red"
+                                            >紧急</span
+                                        >
+                                    </div>
+                                    <div class="status-item">
+                                        <div>
+                                            <strong>今日探访未完成</strong
+                                            ><span
+                                                >7
+                                                户待上门，集中在桂花小区和江湾小区</span
+                                            >
+                                        </div>
+                                        <span class="status-pill amber"
+                                            >待办</span
+                                        >
+                                    </div>
+                                    <div class="status-item">
+                                        <div>
+                                            <strong>重复求助老人</strong
+                                            ><span
+                                                >11 人本周有 2
+                                                次以上求助记录</span
+                                            >
+                                        </div>
+                                        <span class="status-pill blue"
+                                            >跟进</span
+                                        >
+                                    </div>
+                                    <div class="status-item">
+                                        <div>
+                                            <strong>本月回访满意度</strong
+                                            ><span
+                                                >抽样回访 168
+                                                人，满意度保持稳定</span
+                                            >
+                                        </div>
+                                        <span class="status-pill green"
+                                            >4.8 分</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="screen-panel">
+                                <div class="screen-panel-head">
+                                    <h4>邻里互助服务结构</h4>
+                                    <span>本月 318 单</span>
+                                </div>
+                                <div class="volunteer-list">
+                                    <div class="volunteer-item">
+                                        <div>
+                                            <strong>探访助聊</strong>
+                                            <div class="volunteer-bar">
+                                                <span style="width: 92%"></span>
+                                            </div>
+                                        </div>
+                                        <em>118</em>
+                                    </div>
+                                    <div class="volunteer-item">
+                                        <div>
+                                            <strong>助餐送达</strong>
+                                            <div class="volunteer-bar">
+                                                <span style="width: 70%"></span>
+                                            </div>
+                                        </div>
+                                        <em>82</em>
+                                    </div>
+                                    <div class="volunteer-item">
+                                        <div>
+                                            <strong>代买代办</strong>
+                                            <div class="volunteer-bar">
+                                                <span style="width: 54%"></span>
+                                            </div>
+                                        </div>
+                                        <em>64</em>
+                                    </div>
+                                    <div class="volunteer-item">
+                                        <div>
+                                            <strong>陪同维修</strong>
+                                            <div class="volunteer-bar">
+                                                <span style="width: 46%"></span>
+                                            </div>
+                                        </div>
+                                        <em>54</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen-table">
+                        <div class="screen-table-row">
+                            <strong>小区</strong><strong>当前状况</strong
+                            ><strong>红色老人</strong><strong>黄色老人</strong
+                            ><strong>绿色老人</strong><strong>服务次数</strong
+                            ><strong>志愿者</strong><strong>互助单数</strong>
+                        </div>
+                        <div class="screen-table-row">
+                            <span>新城市花园</span><span>平稳</span><span>12</span
+                            ><span>38</span><span>76</span><span>326</span
+                            ><span>22</span><span>88</span>
+                        </div>
+                        <div class="screen-table-row">
+                            <span>长新新村</span><span>需跟进</span
+                            ><span>8</span><span>31</span><span>58</span
+                            ><span>241</span><span>18</span><span>61</span>
+                        </div>
+                        <div class="screen-table-row">
+                            <span>春晓花园</span><span>稳定</span><span>7</span
+                            ><span>29</span><span>63</span><span>186</span
+                            ><span>14</span><span>45</span>
+                        </div>
+                        <div class="screen-table-row">
+                            <span>都市明珠</span><span>活跃</span><span>9</span
+                            ><span>33</span><span>55</span><span>278</span
+                            ><span>16</span><span>69</span>
+                        </div>
+                        <div class="screen-table-row">
+                            <span>星河小区</span><span>平稳</span><span>6</span
+                            ><span>25</span><span>50</span><span>255</span
+                            ><span>16</span><span>55</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="elder">
+                    <div class="section-head">
+                        <div>
+                            <span class="badge">4G智能主机服务演示</span>
+                            <h3>老人不需要会用小程序，也能直接联系小区管家</h3>
+                            <p class="section-lead">
+                                4G智能主机、管家热线、物业前台、定期上门探访和家属代发构成五个入口，重点解决数字鸿沟。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="elder-demo">
+                        <div class="device">
+                            <div class="device-screen">
+                                <strong id="deviceStatus">4G智能主机</strong>
+                                <span id="deviceHint"
+                                    >王阿姨 · 3 栋 602 · 红色老人 · 待机中</span
+                                >
+                            </div>
+                            <div class="device-visual">
+                                <img
+                                    src="assets/4g-smart-host.png"
+                                    alt="4G智能主机"
+                                />
+                            </div>
+                            <button class="sos" id="sosBtn">模拟呼叫</button>
+                            <div class="device-foot">
+                                一键或拉绳呼救 · 双向通话 · 自动接通管家中心
+                            </div>
+                        </div>
+
+                        <div class="elder-side">
+                            <div class="call-log">
+                                <div class="call-log-head">
+                                    <h4>管家处置时间线</h4>
+                                    <span class="badge" id="callStatus"
+                                        >等待呼叫</span
+                                    >
+                                </div>
+                                <div class="timeline" id="callTimeline">
+                                    <div class="event">
+                                        <time>当前</time>
+                                        <div>
+                                            <strong>设备在线</strong
+                                            ><span
+                                                >老人可通过
+                                                4G智能主机一键或拉绳直接联系小区管家。</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="feature-panel">
+                                <h4>4G智能主机特点</h4>
+                                <div class="feature-tags">
+                                    <span>4G全网通</span>
+                                    <span>*语音呼救</span>
+                                    <span>*AI语音呼叫识别</span>
+                                    <span>*方言&普通话呼叫识别</span>
+                                    <span>一键或拉绳呼救</span>
+                                    <span>无线安装</span>
+                                    <span>双向通话</span>
+                                    <span>多点位部署</span>
+                                    <span>服务广播信息推送</span>
+                                    <span>事项语音提醒</span>
+                                    <span>来电接听模式</span>
+                                    <span>紧急呼叫模式</span>
+                                    <span>按键保平安</span>
+                                    <span>分组远程监护</span>
+                                </div>
+                                <p class="feature-note">
+                                    标 * 号部分功能可选配。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="money">
+                    <div class="section-head">
+                        <div>
+                            <span class="badge">关怀与激励闭环</span>
+                            <h3>
+                                用积分、荣誉和服务保障，让邻里互助长期有人参与
+                            </h3>
+                            <p class="section-lead">
+                                重点体现人文关怀，把志愿服务、助餐配送、生活物资、适老化维修和政府补贴纳入统一台账，让每一次帮助都被记录、被回访、被看见。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="money-grid">
+                        <div class="money-card">
+                            <h4>志愿服务</h4>
+                            <strong>200 单/月</strong>
+                            <p>
+                                探访、助聊、代买、送餐等低风险服务进入志愿台账。
+                            </p>
+                        </div>
+                        <div class="money-card">
+                            <h4>关怀积分</h4>
+                            <strong>实时记录</strong>
+                            <p>
+                                服务完成后发放积分，鼓励低龄老人、志愿者参与邻里互助，按季度与年度评优荣誉等。
+                            </p>
+                        </div>
+                        <div class="money-card">
+                            <h4>重点老人服务包</h4>
+                            <strong>一人一档</strong>
+                            <p>
+                                红色、黄色老人形成探访频次、紧急联系人和服务记录。
+                            </p>
+                        </div>
+                        <div class="money-card">
+                            <h4>政府可监管</h4>
+                            <strong>月度报表</strong>
+                            <p>
+                                服务过程、补贴使用、群众评价和回访结果统一留痕。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="settlement">
+                        <div class="settlement-row">
+                            <strong>志愿者积分/时间币</strong
+                            ><span>助聊、探访、代买、送餐</span
+                            ><span>实时到账</span>
+                        </div>
+                        <div class="settlement-row">
+                            <strong>暖心物资兑换</strong
+                            ><span
+                                >米、面、油、纸巾、洗衣液、理发券、助洁券</span
+                            ><span>积分兑换</span>
+                        </div>
+                        <div class="settlement-row">
+                            <strong>技工服务保障</strong
+                            ><span>维修、保洁、安装、适老化改造</span
+                            ><span>评价留痕</span>
+                        </div>
+                        <div class="settlement-row">
+                            <strong>助餐与物资配送</strong
+                            ><span>助餐、代购、药品配送、生活物资保供</span
+                            ><span>逐单确认</span>
+                        </div>
+                        <div class="settlement-row">
+                            <strong>政府和小区监管</strong
+                            ><span>服务台账、补贴台账、回访结果</span
+                            ><span>月度报表</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="ai">
+                    <div class="section-head">
+                        <div>
+                            <span class="badge">AI 赋能 · 民生服务闭环</span>
+                            <h3>AI 做提醒和计算，小区管家做人情和判断</h3>
+                            <p class="section-lead">
+                                AI
+                                不替代管家，而是帮助管家更快发现风险、更准匹配服务、更细监督过程。未来小区小程序把养老、互助、维修、助餐、探访和补贴记录汇聚成一个民生服务闭环。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="money-grid">
+                        <div class="money-card">
+                            <h4>AI 养老风险画像</h4>
+                            <strong>红黄绿</strong>
+                            <p>
+                                综合独居、慢病、呼叫、设备告警、探访记录，辅助管家调整老人分级。
+                            </p>
+                        </div>
+                        <div class="money-card">
+                            <h4>AI 智能派单</h4>
+                            <strong>就近优先</strong>
+                            <p>
+                                按距离、技能、权限、信誉分、空闲时间推荐志愿者、技工或便民商户。
+                            </p>
+                        </div>
+                        <div class="money-card">
+                            <h4>AI 服务质检</h4>
+                            <strong>异常预警</strong>
+                            <p>
+                                识别超时未到、工牌未打卡、服务时长不足、重复投诉和异常记录。
+                            </p>
+                        </div>
+                        <div class="money-card">
+                            <h4>AI 关怀物资建议</h4>
+                            <strong>刚需优先</strong>
+                            <p>
+                                根据兑换记录推荐米面油、纸巾、洗衣液、理发券、助洁券等商品。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="settlement">
+                        <div class="settlement-row">
+                            <strong>需求闭环</strong
+                            ><span
+                                >小程序、热线、4G智能主机、前台、上门探访统一进工单</span
+                            ><span>管家受理</span>
+                        </div>
+                        <div class="settlement-row">
+                            <strong>服务闭环</strong
+                            ><span
+                                >志愿者、便民商户、技工、物业、专业机构共同承接服务</span
+                            ><span>过程留痕</span>
+                        </div>
+                        <div class="settlement-row">
+                            <strong>积分闭环</strong
+                            ><span>志愿者服务得积分，兑换生活物资和服务券</span
+                            ><span>持续激励</span>
+                        </div>
+                        <div class="settlement-row">
+                            <strong>关怀闭环</strong
+                            ><span
+                                >重点老人一人一档，异常预警、探访记录和家属通知全程留痕</span
+                            ><span>温暖可感</span>
+                        </div>
+                        <div class="settlement-row">
+                            <strong>治理闭环</strong
+                            ><span
+                                >沉淀老人、服务、志愿者、便民商户、技工等台账</span
+                            ><span>政府可看</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="pilot">
+                    <div class="section-head">
+                        <div>
+                            <span class="badge">试点验收</span>
+                            <h3>跑通样板小区、做到模式可复制</h3>
+                            <p class="section-lead">
+                                老人发需求、管家派的出、服务接的住、让过程可追溯、政府看的到。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="money-grid">
+                        <div class="money-card">
+                            <h4>重点老人建档率</h4>
+                            <strong>100%</strong>
+                            <p>重点老人建立一人一档，关联责任人。</p>
+                        </div>
+                        <div class="money-card">
+                            <h4>无手机老人可联系率</h4>
+                            <strong>90%+</strong>
+                            <p>4G智能主机、热线、前台、探访、家属代发。</p>
+                        </div>
+                        <div class="money-card">
+                            <h4>投诉响应</h4>
+                            <strong>24h</strong>
+                            <p>所有投诉工单必须管家回访和闭环。</p>
+                        </div>
+                        <div class="money-card">
+                            <h4>群众满意度</h4>
+                            <strong>4.5/5</strong>
+                            <p>按服务评价和抽样回访双重统计。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="demo-footer">
+                    <div>
+                        <strong>演示结论</strong>
+                        <span
+                            >服务平台统一受理，小区管家统一调配、从公益、低尝有尝三个角度匹配不同服务人员，完成服务记录与回访、监督。</span
+                        >
+                    </div>
+                    <button class="btn" data-jump="#overview">返回顶部</button>
+                </div>
+            </main>
+        </div>
+
+        <script>
+            const scenarios = {
+                owner: {
+                    title: "普通业主：家中漏水报修",
+                    desc: "居民通过小程序或管家热线提交维修需求，管家派单并跟踪结果。",
+                    risk: "普通工单",
+                    steps: [
+                        [
+                            "业主发起",
+                            "通过小程序、热线或物业前台提交漏水报修。",
+                        ],
+                        [
+                            "管家识别",
+                            "判断为维修工单，确认地址、紧急程度和是否影响邻居。",
+                        ],
+                        [
+                            "派单上门",
+                            "匹配物业维修或认证水电工，显示预计到达时间。",
+                        ],
+                        ["过程留痕", "到达、维修、照片和业主确认进入工单。"],
+                        ["评价回访", "业主评价服务，管家复核结果并归档。"],
+                    ],
+                },
+                elder: {
+                    title: "老年人：不会用手机也能买药",
+                    desc: "老人按 4G智能主机或拨管家热线，管家代录工单并通知家属。",
+                    risk: "黄色工单",
+                    steps: [
+                        ["老人呼叫", "按 4G智能主机或拨打床头卡上的管家热线。"],
+                        [
+                            "自动弹屏",
+                            "管家看到老人姓名、房号、风险等级、慢病备注和家属电话。",
+                        ],
+                        ["需求确认", "确认药品名称、数量和是否涉及处方药。"],
+                        [
+                            "安排代买",
+                            "普通药品派志愿者代买，处方药联系药店或家属确认。",
+                        ],
+                        [
+                            "完成同步",
+                            "老人签收或语音确认，家属收到服务完成通知。",
+                        ],
+                    ],
+                },
+                volunteer: {
+                    title: "志愿者：邻里探访助聊",
+                    desc: "管家发布探访任务，志愿者按权限接单，服务后获得积分。",
+                    risk: "公益互助",
+                    steps: [
+                        ["任务发布", "管家按老人分级计划发布每周探访任务。"],
+                        [
+                            "志愿者接单",
+                            "同楼栋或附近志愿者报名，系统校验权限和时间。",
+                        ],
+                        ["上门探访", "按话术问候、记录老人状态和新增需求。"],
+                        [
+                            "异常上报",
+                            "发现健康、居家安全或情绪异常，转管家复核。",
+                        ],
+                        [
+                            "积分激励",
+                            "服务完成后发放积分/时间币，计入志愿服务台账。",
+                        ],
+                    ],
+                },
+                merchant: {
+                    title: "便民商户：助餐与物资配送",
+                    desc: "小区管家组织餐饮商户和物资配送力量，保障老人和困难家庭日常需要。",
+                    risk: "便民服务",
+                    steps: [
+                        ["需求汇总", "管家统计老人助餐和居民团餐需求。"],
+                        [
+                            "助餐供给",
+                            "合作餐饮商户提供套餐、配送时间和适老备注。",
+                        ],
+                        [
+                            "配送确认",
+                            "管家、志愿者或配送人员按名单送餐并确认。",
+                        ],
+                        [
+                            "质量回访",
+                            "管家抽查餐品质量、配送温度和老人满意度。",
+                        ],
+                        [
+                            "关怀归档",
+                            "助餐、代购和物资配送记录进入民生服务台账。",
+                        ],
+                    ],
+                },
+                worker: {
+                    title: "技工：适老化扶手安装",
+                    desc: "管家派认证技工评估、施工、验收，符合条件进入补贴台账。",
+                    risk: "专业服务",
+                    steps: [
+                        [
+                            "需求提出",
+                            "老人、家属或管家提出卫生间扶手安装需求。",
+                        ],
+                        ["上门评估", "认证技工上门测量，给出方案和工期。"],
+                        [
+                            "确认施工",
+                            "家属或老人确认后安排施工，管家跟踪进度。",
+                        ],
+                        ["验收留痕", "安装完成后拍照、签字或家属远程确认。"],
+                        [
+                            "回访归档",
+                            "管家归档服务记录，符合政策条件的进入补贴申报台账。",
+                        ],
+                    ],
+                },
+            };
+
+            function renderScenario(key) {
+                const data = scenarios[key];
+                document.getElementById("processTitle").textContent =
+                    data.title;
+                document.getElementById("processDesc").textContent = data.desc;
+                document.getElementById("processRisk").textContent = data.risk;
+                document.getElementById("processRisk").style.background =
+                    key === "elder"
+                        ? "var(--amber)"
+                        : key === "volunteer"
+                          ? "var(--green)"
+                          : key === "merchant"
+                            ? "var(--blue)"
+                            : key === "worker"
+                              ? "var(--violet)"
+                              : "var(--teal)";
+
+                const steps = document.getElementById("processSteps");
+                steps.innerHTML = data.steps
+                    .map(
+                        (step, index) => `
+        <div class="step">
+          <span class="step-num">${index + 1}</span>
+          <div><strong>${step[0]}</strong><span>${step[1]}</span></div>
+        </div>
+      `,
+                    )
+                    .join("");
+
+                document.querySelectorAll("[data-scenario]").forEach((el) => {
+                    el.classList.toggle("active", el.dataset.scenario === key);
+                });
+            }
+
+            document.querySelectorAll("[data-scenario]").forEach((el) => {
+                el.addEventListener("click", () => {
+                    renderScenario(el.dataset.scenario);
+                    document
+                        .querySelector("#stakeholders")
+                        .scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+            });
+
+            document.querySelectorAll("[data-jump]").forEach((el) => {
+                el.addEventListener("click", () => {
+                    const target = document.querySelector(el.dataset.jump);
+                    if (target)
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                    document
+                        .querySelectorAll(".nav button")
+                        .forEach((btn) =>
+                            btn.classList.toggle(
+                                "active",
+                                btn.dataset.jump === el.dataset.jump,
+                            ),
+                        );
+                });
+            });
+
+            const sosBtn = document.getElementById("sosBtn");
+            const timeline = document.getElementById("callTimeline");
+            const callStatus = document.getElementById("callStatus");
+            const deviceStatus = document.getElementById("deviceStatus");
+            const deviceHint = document.getElementById("deviceHint");
+
+            sosBtn.addEventListener("click", () => {
+                deviceStatus.textContent = "呼叫中";
+                deviceHint.textContent = "正在接通小区管家中心";
+                callStatus.textContent = "红色警报处理中";
+                callStatus.style.background = "#fde9e9";
+                callStatus.style.color = "var(--red)";
+                const events = [
+                    [
+                        "00:00",
+                        "4G智能主机触发",
+                        "王阿姨按下一键或拉绳呼救，系统自动弹出老人档案。",
+                    ],
+                    [
+                        "00:08",
+                        "管家接听",
+                        "确认老人位置、风险等级、家属电话和既往健康备注。",
+                    ],
+                    [
+                        "00:20",
+                        "物业先到",
+                        "通知门岗和巡逻人员前往 3 栋 602 核实情况。",
+                    ],
+                    [
+                        "00:35",
+                        "家属同步",
+                        "向家属发送电话和消息提醒，说明处置进展。",
+                    ],
+                    [
+                        "03:10",
+                        "现场确认",
+                        "物业到达现场，管家远程协调是否拨打 120。",
+                    ],
+                    [
+                        "08:30",
+                        "工单闭环",
+                        "处置结果进入老人档案，管家安排事后回访。",
+                    ],
+                ];
+                timeline.innerHTML = events
+                    .map(
+                        (event) => `
+        <div class="event">
+          <time>${event[0]}</time>
+          <div><strong>${event[1]}</strong><span>${event[2]}</span></div>
+        </div>
+      `,
+                    )
+                    .join("");
+            });
+
+            renderScenario("owner");
+        </script>
+    </body>
+</html>
