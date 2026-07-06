@@ -1,11 +1,11 @@
 <template>
   <section class="mini-page publish-page">
-    <div class="page-title compact-title">
+    <div v-if="!createdOrder" class="page-title compact-title">
       <span>一键发布</span>
       <h1>把你的需求告诉小区管家</h1>
     </div>
 
-    <section class="panel publish-panel">
+    <section v-if="!createdOrder" class="panel publish-panel">
       <van-field
         v-model="content"
         autosize
